@@ -45,7 +45,8 @@ def newcatalog():
     catalog = { 
                 'countries': None,
                 'connections': None,
-                'points': None
+                'points': None,
+                'points2' : None
                 }
     catalog['points'] = mp.newMap(numelements=2000,
                                      maptype='PROBING',
@@ -55,14 +56,22 @@ def newcatalog():
                                             directed=True,
                                             size=5000,
                                             comparefunction=compareVerIds)       
-    catalog['countries'] = lt.newList(datastructure='SINGLE_LINKED', cmpfunction = comparePais )    
-
+    catalog['countries'] = lt.newList(datastructure='ARRAY_LIST')    
+    catalog['points2'] = lt.newList(datastructure='ARRAY_LIST') 
     return catalog
 
 # Funciones para agregar informacion al catalogo
+
+
+def addCount(catalog, count):
+    lt.addLast(catalog['countries'], count)
+
+
 def addPoint(catalog, point):
+    lt.addLast(catalog['points2'], point)
     point['cables'] = None
     mp.put(catalog['points'], point['landing_point_id'], point)
+
 
 def addPointConne(catalog, coneccion):
     try:
@@ -114,6 +123,23 @@ def addPointcable(catalog, pointid, cable):
 
 # Funciones de consulta
 
+
+def totalVer(catalog):
+    return gr.numVertices(catalog['connections'])
+
+
+def totalConnections(catalog):
+
+    return gr.numEdges(catalog['connections'])
+
+
+def primerVer(catalog):
+    pri = lt.firstElement(catalog['points2'])
+    return pri
+
+
+def primerPai(catalog):
+    return lt.lastElement(catalog['countries'])
 # Funciones utilizadas para comparar elementos dentro de una lista
 
 def compareIds(id1, id2):
@@ -152,6 +178,7 @@ def comparePais(pais1, pais2):
         return 1
     else:
         return -1
+
 def formatVertex(point, cable):
     
     name = point + '-' + cable

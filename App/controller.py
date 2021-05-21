@@ -40,8 +40,9 @@ def iniciar():
 def loadArchivos(catalog):
     loadPoints(catalog)
     loadConnec(catalog)
-
+    loadCount(catalog)
     return catalog
+
 
 def loadPoints(catalog):
     pointfile = cf.data_dir + 'landing_points.csv'
@@ -55,6 +56,29 @@ def loadConnec(catalog):
     input_file = csv.DictReader(open(connefile, encoding='utf-8-sig'))
     for conne in input_file:
         model.addPointConne(catalog, conne)
+
+
+def loadCount(catalog):
+    countfile = cf.data_dir + 'countries.csv'
+    input_file = csv.DictReader(open(countfile, encoding='utf-8-sig'))
+    for count in input_file:
+        model.addCount(catalog, count)
 # Funciones de ordenamiento
 
 # Funciones de consulta sobre el catálogo
+
+
+def totalVer(catalog):
+    return model.totalVer(catalog)
+
+
+def totalConnections(catalog):
+    return model.totalConnections(catalog)
+
+
+def primerVer(catalog):
+    return model.primerVer(catalog)
+
+
+def primerPai(catalog):
+    return model.primerPai(catalog)
