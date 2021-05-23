@@ -46,18 +46,18 @@ def newcatalog():
                 'countries': None,
                 'connections': None,
                 'points': None,
-                'points2' : None
+                'points2': None
                 }
     catalog['points'] = mp.newMap(numelements=2000,
                                      maptype='PROBING',
                                      comparefunction=compareVerIds)
 
     catalog['connections'] = gr.newGraph(datastructure='ADJ_LIST',
-                                            directed=True,
+                                            directed=False,
                                             size=5000,
-                                            comparefunction=compareVerIds)       
-    catalog['countries'] = lt.newList(datastructure='ARRAY_LIST')    
-    catalog['points2'] = lt.newList(datastructure='ARRAY_LIST') 
+                                            comparefunction=compareVerIds)
+    catalog['countries'] = lt.newList(datastructure='ARRAY_LIST')
+    catalog['points2'] = lt.newList(datastructure='ARRAY_LIST')
     return catalog
 
 # Funciones para agregar informacion al catalogo
@@ -65,6 +65,7 @@ def newcatalog():
 
 def addCount(catalog, count):
     lt.addLast(catalog['countries'], count)
+    addPais(catalog, count)
 
 
 def addPoint(catalog, point):
@@ -87,12 +88,75 @@ def addPointConne(catalog, coneccion):
         addVer(catalog, origen)
         addVer(catalog, destino)
         addConne(catalog, origen, destino, distancia)
-        addPointcable(catalog, idorigen,cable)
-        addPointcable(catalog, idedestino,cable)
+        addPointcable(catalog, idorigen, cable)
+        addPointcable(catalog, idedestino, cable)
         return catalog
     except Exception as exp:
         error.reraise(exp, 'model:addPointConne')
 
+
+def addmismoId(catalog):
+    try:
+        for i in lt.iterator(gr.vertices(catalog['connections'])):
+            idd1 = i.split("-")
+            idorigen = idd1[0]
+            for j in lt.iterator(gr.vertices(catalog['connections'])):
+                idd2 = j.split("-")
+                if idd1[1] != idd2[1]:
+                    idedestino = idd2[0]
+                    cable1 = idd1[1]
+                    cable2 = idd2[1]
+                    origen = formatVertex(idorigen, cable1)
+                    destino = formatVertex(idedestino, cable2)
+                    distancia = 0.1
+                    addVer(catalog, origen)
+                    addVer(catalog, destino)
+                    addConne(catalog, origen, destino, distancia)
+                    addPointcable(catalog, idorigen, cable1)
+                    addPointcable(catalog, idedestino, cable2)
+        return catalog
+    except Exception as exp:
+        error.reraise(exp, 'model:addmismoId')
+
+
+def addPais(catalog, pais):
+    try:
+        if pais['CapitalName'] != '':
+            idorigen = pais['CapitalName'].replace("-", "")
+        else:
+            idorigen = pais['CountryName'].replace("-", "")
+        loc1 = (float(pais['CapitalLatitude']), float(pais['CapitalLongitude']))
+        distancia = -1
+        destino = None
+        des = None
+        for j in lt.iterator(gr.vertices(catalog['connections'])):
+            idd = j.split("-", 1)
+            ll = mp.get(catalog['points'], idd[0])
+            i = ll['value']
+            loc2 = (float(i['latitude']), float(i['longitude']))
+            d = hs.haversine(loc1, loc2)
+            if distancia == -1:
+                distancia = d
+                des = idd
+                destino = i
+            elif distancia > d:
+                distancia = d
+                des = idd
+                destino = i
+        idedestino = destino['landing_point_id']
+        cable = idd[1]
+        point = {'landing_point_id': idorigen, 'id': str(idorigen) + '-' + pais['CountryName'], 'name': str(idorigen) + ', ' + pais['CountryName'], 'latitude': pais['CapitalLatitude'], 'longitude': pais['CapitalLongitude']}
+        addPoint(catalog, point)
+        origen = formatVertex(idorigen, pais['CountryCode'])
+        destino = formatVertex(idedestino, cable)
+        addVer(catalog, origen)
+        addVer(catalog, destino)
+        addConne(catalog, origen, destino, distancia)
+        addPointcable(catalog, idorigen, pais['CountryCode'])
+        addPointcable(catalog, idedestino, cable)
+        return catalog
+    except Exception as exp:
+        error.reraise(exp, 'model:addPais')
 
 def addVer(catalog, pointid):
     try:
@@ -163,7 +227,6 @@ def compareVerIds(ver, keyvaluever):
         return -1
 
 def comparecables(cable1, cable2):
-  
     if (cable1 == cable2):
         return 0
     elif (cable1 > cable2):

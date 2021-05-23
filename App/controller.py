@@ -41,6 +41,7 @@ def loadArchivos(catalog):
     loadPoints(catalog)
     loadConnec(catalog)
     loadCount(catalog)
+    model.addmismoId(catalog)
     return catalog
 
 
