@@ -64,7 +64,7 @@ while True:
         controller.loadArchivos(catalog)
         print("Total landing points: " + str(controller.totalVer(catalog)))
         print("Total conexiones entre landing points: " + str(controller.totalConnections(catalog)))
-        print("Total paises: ")
+        print("Total paises: " + str(controller.totalPaises(catalog)))
         primero = controller.primerVer(catalog)
         print("Primer landing point: ")
         print("     Identificador: " + str(primero['landing_point_id']))
@@ -77,11 +77,17 @@ while True:
         print("     Poblacion: " + str(pais['Population']))
         print("     Usuarios de internet: " + str(pais['Internet users']))
     elif int(inputs[0]) == 2:
-        pass
-
+        point1 = input('Ingrese el primer Landing Point (ej Redondo Beach): ')
+        point2 = input('Ingrese el segundo Landing Point (ej Vung Tau): ')
+        res = controller.requerimiento1(catalog, point1, point2)
+        print('El total de clusters presentes es: ' + str(res[0]))
+        if res[1]:
+            print('Los dos landing points estan en el mismo cluster ')
+        else:
+            print('Los dos landing points noooo estan en el mismo cluster')
     elif int(inputs[0]) == 3:
-        pass
-
+        resp = controller.requerimiento2(catalog)
+        print(resp)
     elif int(inputs[0]) == 4:
         pass
 

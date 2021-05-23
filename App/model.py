@@ -25,6 +25,7 @@
  """
 
 
+from DISClib.DataStructures.chaininghashtable import get
 import config as cf
 from DISClib.ADT.graph import gr
 from DISClib.ADT import list as lt
@@ -46,7 +47,8 @@ def newcatalog():
                 'countries': None,
                 'connections': None,
                 'points': None,
-                'points2': None
+                'points2': None,
+                'compo': None
                 }
     catalog['points'] = mp.newMap(numelements=2000,
                                      maptype='PROBING',
@@ -98,11 +100,11 @@ def addPointConne(catalog, coneccion):
 def addmismoId(catalog):
     try:
         for i in lt.iterator(gr.vertices(catalog['connections'])):
-            idd1 = i.split("-")
+            idd1 = i.split("-", 1)
             idorigen = idd1[0]
             for j in lt.iterator(gr.vertices(catalog['connections'])):
-                idd2 = j.split("-")
-                if idd1[1] != idd2[1]:
+                idd2 = j.split("-", 1)
+                if idd1[1] != idd2[1] and idd1[0] == idd2[0]:
                     idedestino = idd2[0]
                     cable1 = idd1[1]
                     cable2 = idd2[1]
@@ -122,9 +124,9 @@ def addmismoId(catalog):
 def addPais(catalog, pais):
     try:
         if pais['CapitalName'] != '':
-            idorigen = pais['CapitalName'].replace("-", "")
+            idorigen = pais['CapitalName'].replace("-", "").lower()
         else:
-            idorigen = pais['CountryName'].replace("-", "")
+            idorigen = pais['CountryName'].replace("-", "").lower()
         loc1 = (float(pais['CapitalLatitude']), float(pais['CapitalLongitude']))
         distancia = -1
         destino = None
@@ -144,7 +146,7 @@ def addPais(catalog, pais):
                 des = idd
                 destino = i
         idedestino = destino['landing_point_id']
-        cable = idd[1]
+        cable = des[1]
         point = {'landing_point_id': idorigen, 'id': str(idorigen) + '-' + pais['CountryName'], 'name': str(idorigen) + ', ' + pais['CountryName'], 'latitude': pais['CapitalLatitude'], 'longitude': pais['CapitalLongitude']}
         addPoint(catalog, point)
         origen = formatVertex(idorigen, pais['CountryCode'])
@@ -204,6 +206,10 @@ def primerVer(catalog):
 
 def primerPai(catalog):
     return lt.lastElement(catalog['countries'])
+
+
+def totalPaises(catalog):
+    return lt.size(catalog['countries'])
 # Funciones utilizadas para comparar elementos dentro de una lista
 
 def compareIds(id1, id2):
@@ -215,9 +221,7 @@ def compareIds(id1, id2):
         return -1
 
 def compareVerIds(ver, keyvaluever):
-    """
-    Compara dos estaciones
-    """
+    
     code = keyvaluever['key']
     if (ver == code):
         return 0
@@ -246,3 +250,42 @@ def formatVertex(point, cable):
     
     name = point + '-' + cable
     return name
+
+
+def requerimiento1(catalog, point1, point2):
+    catalog['compo'] = scc.KosarajuSCC(catalog['connections'])
+    k = 1
+    g = 1
+    tr1 = False
+    tr2 = False
+    while k <= lt.size(gr.vertices(catalog['connections'])) and not tr1:
+        j = lt.getElement(gr.vertices(catalog['connections']), k)
+        idd1 = j.split("-", 1)
+        ll1 = mp.get(catalog['points'], idd1[0])
+        name1 = ll1['value']['name']
+        if point1.lower() in name1.lower():
+            ver1 = j
+            tr1 = True
+        k += 1
+    while g <= lt.size(gr.vertices(catalog['connections'])) and not tr2:
+        i = lt.getElement(gr.vertices(catalog['connections']), g)
+        idd2 = i.split("-", 1)
+        ll2 = mp.get(catalog['points'], idd2[0])
+        name2 = ll2['value']['name']
+        if point2.lower() in name2.lower():
+            ver2 = i
+            tr2 = True
+        g += 1
+    con = scc.stronglyConnected(catalog['compo'], ver1, ver2)
+    return scc.connectedComponents(catalog['compo']), con
+
+
+def requerimiento2(catalog):
+    catalog['compo'] = scc.KosarajuSCC(catalog['connections'])
+    listaa = lt.newList('ARRAY_LIST')
+    for j in lt.iterator(gr.vertices(catalog['connections'])):
+        nu = scc.sccCount(catalog['connections'], catalog['compo'], j)
+        lt.addLast(listaa, lt.size(nu))
+    nueva = sa.sort(listaa, compareIds)
+    return nueva
+

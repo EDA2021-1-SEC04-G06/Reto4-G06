@@ -83,3 +83,15 @@ def primerVer(catalog):
 
 def primerPai(catalog):
     return model.primerPai(catalog)
+
+
+def totalPaises(catalog):
+    return model.totalPaises(catalog)
+
+
+def requerimiento1(catalog, point1, point2):
+    return model.requerimiento1(catalog, point1, point2)
+
+
+def requerimiento2(catalog):
+    return model.requerimiento2(catalog)
