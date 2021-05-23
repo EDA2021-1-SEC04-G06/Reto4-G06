@@ -25,6 +25,7 @@
  """
 
 
+from DISClib.DataStructures.arraylist import subList
 from DISClib.DataStructures.chaininghashtable import get
 import config as cf
 from DISClib.ADT.graph import gr
@@ -48,7 +49,8 @@ def newcatalog():
                 'connections': None,
                 'points': None,
                 'points2': None,
-                'compo': None
+                'compo': None,
+                'rutas': None
                 }
     catalog['points'] = mp.newMap(numelements=2000,
                                      maptype='PROBING',
@@ -104,7 +106,7 @@ def addmismoId(catalog):
             idorigen = idd1[0]
             for j in lt.iterator(gr.vertices(catalog['connections'])):
                 idd2 = j.split("-", 1)
-                if idd1[1] != idd2[1] and idd1[0] == idd2[0]:
+                if idd1[0] == idd2[0]:
                     idedestino = idd2[0]
                     cable1 = idd1[1]
                     cable2 = idd2[1]
@@ -131,34 +133,60 @@ def addPais(catalog, pais):
         distancia = -1
         destino = None
         des = None
+        
         for j in lt.iterator(gr.vertices(catalog['connections'])):
             idd = j.split("-", 1)
             ll = mp.get(catalog['points'], idd[0])
             i = ll['value']
             loc2 = (float(i['latitude']), float(i['longitude']))
             d = hs.haversine(loc1, loc2)
-            if distancia == -1:
+            if distancia == -1 and len(idd[1]) > 2:
                 distancia = d
                 des = idd
                 destino = i
-            elif distancia > d:
+            elif distancia > d and len(idd[1]) > 2:
                 distancia = d
                 des = idd
                 destino = i
         idedestino = destino['landing_point_id']
-        cable = des[1]
+        origen = formatVertex(idorigen, pais['CountryCode'])
+        addVer(catalog, origen)
         point = {'landing_point_id': idorigen, 'id': str(idorigen) + '-' + pais['CountryName'], 'name': str(idorigen) + ', ' + pais['CountryName'], 'latitude': pais['CapitalLatitude'], 'longitude': pais['CapitalLongitude']}
         addPoint(catalog, point)
-        origen = formatVertex(idorigen, pais['CountryCode'])
-        destino = formatVertex(idedestino, cable)
-        addVer(catalog, origen)
-        addVer(catalog, destino)
-        addConne(catalog, origen, destino, distancia)
-        addPointcable(catalog, idorigen, pais['CountryCode'])
-        addPointcable(catalog, idedestino, cable)
+        for h in lt.iterator(gr.vertices(catalog['connections'])):
+            hdd = h.split("-", 1)
+            if des[0] == hdd[0]:
+                cable = hdd[1]
+                destino = formatVertex(idedestino, cable) 
+                addVer(catalog, destino)
+                addConne(catalog, origen, destino, distancia)
+                addPointcable(catalog, idorigen, pais['CountryCode'])
+                addPointcable(catalog, idedestino, cable)
+        addMismoPais(catalog, pais)
         return catalog
     except Exception as exp:
         error.reraise(exp, 'model:addPais')
+
+
+def addMismoPais(catalog, pais):
+    if pais['CapitalName'] != '':
+        idorigen = pais['CapitalName'].replace("-", "").lower()
+    else:
+        idorigen = pais['CountryName'].replace("-", "").lower()
+    origen = formatVertex(idorigen, pais['CountryCode'])
+    loc1 = (float(pais['CapitalLatitude']), float(pais['CapitalLongitude']))
+    for j in lt.iterator(gr.vertices(catalog['connections'])):
+        coco = j.split("-", 1)
+        pa = mp.get(catalog['points'], coco[0])
+        if pais['CountryName'].lower() in pa['value']['name'].lower():
+            loc2 = (float(pa['value']['latitude']), float(pa['value']['longitude']))
+            distancia = hs.haversine(loc1, loc2)
+            addVer(catalog, j)
+            addConne(catalog, origen, j, distancia)
+            addPointcable(catalog, idorigen, pais['CountryCode'])
+            addPointcable(catalog, coco[0], coco[1])
+    return catalog
+
 
 def addVer(catalog, pointid):
     try:
@@ -238,6 +266,7 @@ def comparecables(cable1, cable2):
     else:
         return -1
 
+
 def comparePais(pais1, pais2):
     if (pais1['CountryName'] == pais2['CountryName']):
         return 0
@@ -246,8 +275,17 @@ def comparePais(pais1, pais2):
     else:
         return -1
 
-def formatVertex(point, cable):
-    
+
+def comparecone(c1, c2):
+    if c1[3] > c2[3]:
+        return 1
+    elif c1[3] == c2[3]:
+        return 0
+    else:
+        return -1
+
+
+def formatVertex(point, cable): 
     name = point + '-' + cable
     return name
 
@@ -281,11 +319,41 @@ def requerimiento1(catalog, point1, point2):
 
 
 def requerimiento2(catalog):
-    catalog['compo'] = scc.KosarajuSCC(catalog['connections'])
+    verti = mp.keySet(catalog['points'])
     listaa = lt.newList('ARRAY_LIST')
-    for j in lt.iterator(gr.vertices(catalog['connections'])):
-        nu = scc.sccCount(catalog['connections'], catalog['compo'], j)
-        lt.addLast(listaa, lt.size(nu))
-    nueva = sa.sort(listaa, compareIds)
-    return nueva
+    for v in lt.iterator(verti):
+        c = mp.get(catalog['points'],v)['value']
+        total = lt.size(c['cables'])
+        lt.addLast(listaa, (c['landing_point_id'], c['id'], c['name'], total))
+    final = sa.sort(listaa, comparecone)
+    final = lt.subList(final, 1, 10)
+    return final
+
+
+def requerimiento3(catalog, pais1, pais2):
+    k = 1
+    g = 1
+    tr1 = False
+    tr2 = False
+    e1 = None
+    while k <= lt.size(catalog['countries']) and not tr1:
+        p = lt.getElement(catalog['countries'], k)
+        if p['CountryName'].lower() in pais1.lower():
+            tr1 = True
+            e1 = p
+        k += 1
+    e2 = None
+    while g <= lt.size(catalog['countries']) and not tr2:
+        f = lt.getElement(catalog['countries'], g)
+        if f['CountryName'].lower() in pais2.lower():
+            tr2 = True
+            e2 = f
+        g += 1
+    pa1 = formatVertex(e1['CapitalName'].replace("-", "").lower(), e1['CountryCode'])
+    pa2 = formatVertex(e2['CapitalName'].replace("-", "").lower(), e2['CountryCode'])
+    catalog['rutas'] = djk.Dijkstra(catalog['connections'], pa1)
+    ruta = djk.pathTo(catalog['rutas'], pa2)
+    distancia = djk.distTo(catalog['rutas'],  pa2)
+    return ruta, distancia
+
 

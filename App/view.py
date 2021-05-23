@@ -87,15 +87,22 @@ while True:
             print('Los dos landing points noooo estan en el mismo cluster')
     elif int(inputs[0]) == 3:
         resp = controller.requerimiento2(catalog)
-        print(resp)
+        for r in lt.iterator(resp):
+            print("Nombre: " + str(r[1]))
+            print("País:" + str(r[2]).split(',')[1])
+            print("Identificador: " + str(r[0]))
+            print("Total cables conectados: " + str(r[3]) + "\n")
     elif int(inputs[0]) == 4:
-        pass
-
+        pais1 = input('Ingrese el primer Pais (ej Colombia): ')
+        pais2 = input('Ingrese el segundo Pais (ej Indonesia): ')
+        puesta = controller.requerimiento3(catalog, pais1, pais2)
+        print("Ruta mas corta " + str(puesta[0]))
+        print('Total distancia de la ruta ' + str(puesta[1]))
     elif int(inputs[0]) == 5:
         pass
 
     elif int(inputs[0]) == 6:
-        pass
+        pass 
 
     elif int(inputs[0]) == 7:
         pass
