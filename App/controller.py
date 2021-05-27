@@ -40,8 +40,9 @@ def iniciar():
 def loadArchivos(catalog):
     loadPoints(catalog)
     loadConnec(catalog)
-    loadCount(catalog)
     model.addmismoId(catalog)
+    loadCount(catalog)
+    
     return catalog
 
 
@@ -99,4 +100,7 @@ def requerimiento2(catalog):
 
 def requerimiento3(catalog, pais1, pais2):
     return model.requerimiento3(catalog, pais1, pais2)
-    
+
+
+def requerimiento8(catalog):
+    return model.requerimiento8(catalog)

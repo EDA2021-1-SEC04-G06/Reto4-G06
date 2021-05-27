@@ -25,6 +25,7 @@
  """
 
 
+from numpy import info
 from DISClib.DataStructures.arraylist import subList
 from DISClib.DataStructures.chaininghashtable import get
 import config as cf
@@ -37,6 +38,9 @@ from DISClib.Algorithms.Graphs import scc
 from DISClib.Algorithms.Graphs import dijsktra as djk
 from DISClib.Utils import error as error
 import haversine as hs
+import folium
+
+
 # hs.haversine(loc1,loc2,unit=Unit.METERS)
 assert cf
 
@@ -86,12 +90,13 @@ def addPointConne(catalog, coneccion):
         origen = formatVertex(idorigen, cable)
         destino = formatVertex(idedestino, cable)
         if 'n.a.' in coneccion['cable_length']:
-            distancia = 0.1
+            distancia = 1000
         else:
             distancia = float(coneccion['cable_length'].replace(',','').strip(' km'))
         addVer(catalog, origen)
         addVer(catalog, destino)
         addConne(catalog, origen, destino, distancia)
+        addConne(catalog, destino, origen, distancia)
         addPointcable(catalog, idorigen, cable)
         addPointcable(catalog, idedestino, cable)
         return catalog
@@ -116,8 +121,9 @@ def addmismoId(catalog):
                     addVer(catalog, origen)
                     addVer(catalog, destino)
                     addConne(catalog, origen, destino, distancia)
-                    addPointcable(catalog, idorigen, cable1)
-                    addPointcable(catalog, idedestino, cable2)
+                    addConne(catalog, destino, origen, distancia)
+                    addPointcable(catalog, idorigen, cable2)
+                    addPointcable(catalog, idedestino, cable1)
         return catalog
     except Exception as exp:
         error.reraise(exp, 'model:addmismoId')
@@ -160,8 +166,11 @@ def addPais(catalog, pais):
                 destino = formatVertex(idedestino, cable) 
                 addVer(catalog, destino)
                 addConne(catalog, origen, destino, distancia)
+                addConne(catalog, destino, origen, distancia)
                 addPointcable(catalog, idorigen, pais['CountryCode'])
                 addPointcable(catalog, idedestino, cable)
+                addPointcable(catalog, idedestino, pais['CountryCode'])
+                addPointcable(catalog, idorigen, cable)
         addMismoPais(catalog, pais)
         return catalog
     except Exception as exp:
@@ -183,8 +192,11 @@ def addMismoPais(catalog, pais):
             distancia = hs.haversine(loc1, loc2)
             addVer(catalog, j)
             addConne(catalog, origen, j, distancia)
+            addConne(catalog, j, origen, distancia)
             addPointcable(catalog, idorigen, pais['CountryCode'])
             addPointcable(catalog, coco[0], coco[1])
+            addPointcable(catalog, coco[0], pais['CountryCode'])
+            addPointcable(catalog, idorigen, coco[1])
     return catalog
 
 
@@ -322,12 +334,12 @@ def requerimiento2(catalog):
     verti = mp.keySet(catalog['points'])
     listaa = lt.newList('ARRAY_LIST')
     for v in lt.iterator(verti):
-        c = mp.get(catalog['points'],v)['value']
+        c = mp.get(catalog['points'], v)['value']
         total = lt.size(c['cables'])
-        lt.addLast(listaa, (c['landing_point_id'], c['id'], c['name'], total))
+        lt.addLast(listaa, (c['landing_point_id'], c['id'], c['name'], total, c['cables']))
     final = sa.sort(listaa, comparecone)
-    final = lt.subList(final, 1, 10)
-    return final
+    final2 = lt.subList(final, 1, 10)
+    return final2
 
 
 def requerimiento3(catalog, pais1, pais2):
@@ -357,3 +369,21 @@ def requerimiento3(catalog, pais1, pais2):
     return ruta, distancia
 
 
+
+def requerimiento8(catalog):
+    m = folium.Map(location=[4.6, -74.083333], tiles="Stamen Terrain")
+    vertices = gr.vertices(catalog['connections'])
+    for v in lt.iterator(vertices):
+        cv = v.split("-", 1)
+        
+        infov = mp.get(catalog['points'], cv[0])['value']
+        folium.Marker([infov['latitude'], infov['longitude']], popup=str(infov['name'])).add_to(m)
+        ad = gr.adjacents(catalog['connections'], v)
+        for e in lt.iterator(ad):
+            ce = e.split("-", 1)
+            infoe = mp.get(catalog['points'], ce[0])['value']
+            folium.PolyLine(locations=[(infov['latitude'], infov['latitude']), (infoe['latitude'], infoe['longitude'])], tooltip=str(cv[1])).add_to(m)
+
+    m.save('mapa_cables.html')
+    return m
+    

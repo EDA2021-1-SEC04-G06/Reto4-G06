@@ -23,6 +23,7 @@
 import config as cf
 import sys
 import controller
+import threading
 from DISClib.ADT import list as lt
 assert cf
 
@@ -54,65 +55,76 @@ catalog = None
 """
 Menu principal
 """
-while True:
-    printMenu()
-    inputs = input('Seleccione una opción para continuar\n')
-    if int(inputs[0]) == 1:
-        print("Inicializando .... \n")
-        catalog = controller.iniciar()
-        print("Cargando información de los archivos ....\n")
-        controller.loadArchivos(catalog)
-        print("Total landing points: " + str(controller.totalVer(catalog)))
-        print("Total conexiones entre landing points: " + str(controller.totalConnections(catalog)))
-        print("Total paises: " + str(controller.totalPaises(catalog)))
-        primero = controller.primerVer(catalog)
-        print("Primer landing point: ")
-        print("     Identificador: " + str(primero['landing_point_id']))
-        print("     Nombre: " + str(primero['name']))
-        print("     Latitud: " + str(primero['latitude']))
-        print("     Longitud: " + str(primero['longitude']))
-        print("Ultimo pais cargado: ")
-        pais = controller.primerPai(catalog)
-        print("     Nombre: " + str(pais['CountryName']))
-        print("     Poblacion: " + str(pais['Population']))
-        print("     Usuarios de internet: " + str(pais['Internet users']))
-    elif int(inputs[0]) == 2:
-        point1 = input('Ingrese el primer Landing Point (ej Redondo Beach): ')
-        point2 = input('Ingrese el segundo Landing Point (ej Vung Tau): ')
-        res = controller.requerimiento1(catalog, point1, point2)
-        print('El total de clusters presentes es: ' + str(res[0]))
-        if res[1]:
-            print('Los dos landing points estan en el mismo cluster ')
+def thread_cycle():
+    while True:
+        printMenu()
+        inputs = input('Seleccione una opción para continuar\n')
+        if int(inputs[0]) == 1:
+            print("Inicializando .... \n")
+            catalog = controller.iniciar()
+            print("Cargando información de los archivos ....\n")
+            controller.loadArchivos(catalog)
+            print("Total landing points: " + str(controller.totalVer(catalog)))
+            print("Total conexiones entre landing points: " + str(controller.totalConnections(catalog)))
+            print("Total paises: " + str(controller.totalPaises(catalog)))
+            primero = controller.primerVer(catalog)
+            print("Primer landing point: ")
+            print("     Identificador: " + str(primero['landing_point_id']))
+            print("     Nombre: " + str(primero['name']))
+            print("     Latitud: " + str(primero['latitude']))
+            print("     Longitud: " + str(primero['longitude']))
+            print("Ultimo pais cargado: ")
+            pais = controller.primerPai(catalog)
+            print("     Nombre: " + str(pais['CountryName']))
+            print("     Poblacion: " + str(pais['Population']))
+            print("     Usuarios de internet: " + str(pais['Internet users']))
+            print('El limite de recursion actual: ' + str(sys.getrecursionlimit()))
+        elif int(inputs[0]) == 2:
+            point1 = input('Ingrese el primer Landing Point (ej Redondo Beach): ')
+            point2 = input('Ingrese el segundo Landing Point (ej Vung Tau): ')
+            res = controller.requerimiento1(catalog, point1, point2)
+            print('El total de clusters presentes es: ' + str(res[0]))
+            if res[1]:
+                print('Los dos landing points estan en el mismo cluster ')
+            else:
+                print('Los dos landing points noooo estan en el mismo cluster')
+        elif int(inputs[0]) == 3:
+            resp = controller.requerimiento2(catalog)
+            for r in lt.iterator(resp):
+                print("Nombre: " + str(r[1]))
+                print("País:" + str(r[2]).split(',')[1])
+                print("Identificador: " + str(r[0]))
+                print("Total cables conectados: " + str(r[3])  )
+                print("\n")
+        elif int(inputs[0]) == 4:
+            pais1 = input('Ingrese el primer Pais (ej Colombia): ')
+            pais2 = input('Ingrese el segundo Pais (ej Indonesia): ')
+            puesta = controller.requerimiento3(catalog, pais1, pais2)
+            print("Ruta mas corta " + str(puesta[0]))
+            print('Total distancia de la ruta ' + str(puesta[1]))
+        elif int(inputs[0]) == 5:
+            pass
+
+        elif int(inputs[0]) == 6:
+            pass 
+
+        elif int(inputs[0]) == 7:
+            pass
+
+        elif int(inputs[0]) == 8:
+            pass
+
+        elif int(inputs[0]) == 9:
+            print('Graficamos...')
+            m = controller.requerimiento8(catalog)
+            m
         else:
-            print('Los dos landing points noooo estan en el mismo cluster')
-    elif int(inputs[0]) == 3:
-        resp = controller.requerimiento2(catalog)
-        for r in lt.iterator(resp):
-            print("Nombre: " + str(r[1]))
-            print("País:" + str(r[2]).split(',')[1])
-            print("Identificador: " + str(r[0]))
-            print("Total cables conectados: " + str(r[3]) + "\n")
-    elif int(inputs[0]) == 4:
-        pais1 = input('Ingrese el primer Pais (ej Colombia): ')
-        pais2 = input('Ingrese el segundo Pais (ej Indonesia): ')
-        puesta = controller.requerimiento3(catalog, pais1, pais2)
-        print("Ruta mas corta " + str(puesta[0]))
-        print('Total distancia de la ruta ' + str(puesta[1]))
-    elif int(inputs[0]) == 5:
-        pass
+            sys.exit(0)
+    sys.exit(0)
 
-    elif int(inputs[0]) == 6:
-        pass 
 
-    elif int(inputs[0]) == 7:
-        pass
-
-    elif int(inputs[0]) == 8:
-        pass
-
-    elif int(inputs[0]) == 9:
-        pass
-
-    else:
-        sys.exit(0)
-sys.exit(0)
+if __name__ == "__main__":
+    threading.stack_size(67108864)  # 64MB stack
+    sys.setrecursionlimit(2 ** 20)
+    thread = threading.Thread(target=thread_cycle)
+    thread.start()
