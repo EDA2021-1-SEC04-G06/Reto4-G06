@@ -52,6 +52,12 @@ def printMenu():
     print("*******************************************")
 catalog = None
 
+
+def respuesta3(listita):
+    for l in lt.iterator(listita):
+        print('Desde: ' + str(l['vertexA']) + "      Hasta: " + str(l['vertexB']))
+        print('Lo cual mide ' + str(l['weight']))
+
 """
 Menu principal
 """
@@ -100,8 +106,9 @@ def thread_cycle():
             pais1 = input('Ingrese el primer Pais (ej Colombia): ')
             pais2 = input('Ingrese el segundo Pais (ej Indonesia): ')
             puesta = controller.requerimiento3(catalog, pais1, pais2)
-            print("Ruta mas corta " + str(puesta[0]))
-            print('Total distancia de la ruta ' + str(puesta[1]))
+            print("Ruta mas corta: ")
+            respuesta3(puesta[0])
+            print('Total distancia de la ruta ' + str(puesta[1]) + 'Km')
         elif int(inputs[0]) == 5:
             pass
 

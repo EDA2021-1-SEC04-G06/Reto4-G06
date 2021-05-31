@@ -56,13 +56,13 @@ def newcatalog():
                 'compo': None,
                 'rutas': None
                 }
-    catalog['points'] = mp.newMap(numelements=2000,
+    catalog['points'] = mp.newMap(numelements=4000,
                                      maptype='PROBING',
                                      comparefunction=compareVerIds)
 
     catalog['connections'] = gr.newGraph(datastructure='ADJ_LIST',
-                                            directed=False,
-                                            size=5000,
+                                            directed=True,
+                                            size=20000,
                                             comparefunction=compareVerIds)
     catalog['countries'] = lt.newList(datastructure='ARRAY_LIST')
     catalog['points2'] = lt.newList(datastructure='ARRAY_LIST')
@@ -369,6 +369,9 @@ def requerimiento3(catalog, pais1, pais2):
     return ruta, distancia
 
 
+def requerimiento4(catalog):
+    
+
 
 def requerimiento8(catalog):
     m = folium.Map(location=[4.6, -74.083333], tiles="Stamen Terrain")
@@ -377,12 +380,12 @@ def requerimiento8(catalog):
         cv = v.split("-", 1)
         
         infov = mp.get(catalog['points'], cv[0])['value']
-        folium.Marker([infov['latitude'], infov['longitude']], popup=str(infov['name'])).add_to(m)
+        folium.Marker([float(infov['latitude']),  float(infov['longitude'])], popup=str(infov['name'])).add_to(m)
         ad = gr.adjacents(catalog['connections'], v)
         for e in lt.iterator(ad):
             ce = e.split("-", 1)
             infoe = mp.get(catalog['points'], ce[0])['value']
-            folium.PolyLine(locations=[(infov['latitude'], infov['latitude']), (infoe['latitude'], infoe['longitude'])], tooltip=str(cv[1])).add_to(m)
+            folium.PolyLine(locations=[(float(infov['latitude']), float(infov['longitude'])), (float(infoe['latitude']), float(infoe['longitude']))], tooltip=str(cv[1])).add_to(m)
 
     m.save('mapa_cables.html')
     return m
