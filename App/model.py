@@ -26,15 +26,16 @@
 
 
 from numpy import info
-from DISClib.DataStructures.arraylist import subList
+from DISClib.DataStructures.arraylist import iterator, subList
 from DISClib.DataStructures.chaininghashtable import get
 import config as cf
-from DISClib.ADT.graph import gr
+from DISClib.ADT.graph import gr, vertices
 from DISClib.ADT import list as lt
 from DISClib.ADT import map as mp
 from DISClib.DataStructures import mapentry as me
 from DISClib.Algorithms.Sorting import shellsort as sa
 from DISClib.Algorithms.Graphs import scc
+from DISClib.Algorithms.Graphs import prim
 from DISClib.Algorithms.Graphs import dijsktra as djk
 from DISClib.Utils import error as error
 import haversine as hs
@@ -54,13 +55,19 @@ def newcatalog():
                 'points': None,
                 'points2': None,
                 'compo': None,
-                'rutas': None
+                'rutas': None,
+                'mst': None
                 }
     catalog['points'] = mp.newMap(numelements=4000,
                                      maptype='PROBING',
                                      comparefunction=compareVerIds)
 
     catalog['connections'] = gr.newGraph(datastructure='ADJ_LIST',
+                                            directed=True,
+                                            size=20000,
+                                            comparefunction=compareVerIds)
+    
+    catalog['mst'] = gr.newGraph(datastructure='ADJ_LIST',
                                             directed=True,
                                             size=20000,
                                             comparefunction=compareVerIds)
@@ -215,6 +222,34 @@ def addConne(catalog, origen, destino, distancia):
         gr.addEdge(catalog['connections'], origen, destino, distancia)
     return catalog
 
+def addVerMst(catalog, pointid):
+    try:
+        if not gr.containsVertex(catalog['mst'], pointid):
+            gr.insertVertex(catalog['mst'], pointid)
+        return catalog
+    except Exception as exp:
+        error.reraise(exp, 'model:addVerMst')
+
+
+def addConneMst(catalog, origen, destino, distancia):
+    edge = gr.getEdge(catalog['mst'], origen, destino)
+    if edge is None:
+        gr.addEdge(catalog['mst'], origen, destino, distancia)
+    return catalog
+
+
+def addPointConneMst(catalog, ver1, ver2, distancia):
+    try:
+        origen = ver1
+        destino = ver2
+        addVerMst(catalog, origen)
+        addVerMst(catalog, destino)
+        addConneMst(catalog, origen, destino, distancia)
+        addConneMst(catalog, destino, origen, distancia)
+        return catalog
+    except Exception as exp:
+        error.reraise(exp, 'model:addPointConneMst')
+
 
 def addPointcable(catalog, pointid, cable):
     dato = mp.get(catalog['points'], pointid)
@@ -278,6 +313,13 @@ def comparecables(cable1, cable2):
     else:
         return -1
 
+def kmdes(pa1, pa2):
+    if pa1[1] == pa2[1]:
+        return 0
+    elif pa1[1] < pa2[1]:
+        return 1
+    else:
+        return -1
 
 def comparePais(pais1, pais2):
     if (pais1['CountryName'] == pais2['CountryName']):
@@ -370,7 +412,71 @@ def requerimiento3(catalog, pais1, pais2):
 
 
 def requerimiento4(catalog):
+    pri = prim.PrimMST(catalog['connections'])
+    peso = prim.weightMST(catalog['connections'], pri)
+    mst = prim.edgesMST(catalog['connections'], pri)['mst']
+
+    m = folium.Map(location=[4.6, -74.083333], tiles="Stamen Terrain")
     
+    for st in lt.iterator(mst):
+        cv = st['vertexA'].split("-", 1)
+        ce = st['vertexB'].split("-", 1)
+        infov = mp.get(catalog['points'], cv[0])['value']
+        infoe = mp.get(catalog['points'], ce[0])['value']
+        addPointConneMst(catalog, st['vertexA'], st['vertexB'], st['weight'])
+        folium.PolyLine(locations=[(float(infov['latitude']), float(infov['longitude'])), (float(infoe['latitude']), float(infoe['longitude']))], tooltip=str(cv[1])).add_to(m)
+        folium.Marker([float(infov['latitude']),  float(infov['longitude'])], popup=str(infov['name'])).add_to(m)
+        folium.Marker([float(infoe['latitude']),  float(infoe['longitude'])], popup=str(infoe['name'])).add_to(m)
+    m.save('mapa_mst.html')
+    gramst = catalog['mst']
+    vert = gr.vertices(gramst)
+    num = lt.size(vert)
+    primero = lt.firstElement(vert)
+    mayor = 0
+    camino = None
+    dijta = djk.Dijkstra(catalog['mst'], primero)
+    for v in lt.iterator(vert):
+        ruta = djk.pathTo(dijta, v)
+        x = lt.size(ruta)
+        if x > mayor:
+            mayor = x
+            camino = ruta
+    return num, peso, camino
+
+
+def requerimiento5(catalog, poin):
+    paisesf = lt.newList(datastructure='ARRAY_LIST')
+    k = 1
+    tr1 = False
+    while k <= lt.size(gr.vertices(catalog['connections'])) and not tr1:
+        j = lt.getElement(gr.vertices(catalog['connections']), k)
+        idd1 = j.split("-", 1)
+        ll1 = mp.get(catalog['points'], idd1[0])
+        name1 = ll1['value']['name']
+        if poin.lower() in name1.lower():
+            ver1 = ll1
+            tr1 = True
+        k += 1
+    ca = ver1['value']
+    tamca = lt.size(ca['cables'])
+    
+    for coun in lt.iterator(catalog['countries']):
+        if coun['CapitalName'] != '':
+            cap = coun['CapitalName'].replace("-", "").lower()
+        else:
+            cap = coun['CountryName'].replace("-", "").lower()
+        tr2 = False
+        ll2 = mp.get(catalog['points'], cap)['value']
+        g = 1
+        while g <= tamca and not tr2:
+            c = lt.getElement(ca['cables'], g)
+            if lt.isPresent(ll2['cables'], c) != 0:
+                tr2 = True
+                distanci = hs.haversine((float(ca['latitude']),float(ca['longitude'])), (float(coun['CapitalLatitude']), float(coun['CapitalLongitude'])))
+                lt.addLast(paisesf, (coun['CountryName'], distanci))
+            g += 1
+    ordee = sa.sort(paisesf, kmdes)
+    return ordee
 
 
 def requerimiento8(catalog):

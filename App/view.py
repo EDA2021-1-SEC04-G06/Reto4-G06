@@ -20,6 +20,7 @@
  * along withthis program.  If not, see <http://www.gnu.org/licenses/>.
  """
 
+
 import config as cf
 import sys
 import controller
@@ -53,7 +54,7 @@ def printMenu():
 catalog = None
 
 
-def respuesta3(listita):
+def respuestaxd(listita):
     for l in lt.iterator(listita):
         print('Desde: ' + str(l['vertexA']) + "      Hasta: " + str(l['vertexB']))
         print('Lo cual mide ' + str(l['weight']))
@@ -107,14 +108,21 @@ def thread_cycle():
             pais2 = input('Ingrese el segundo Pais (ej Indonesia): ')
             puesta = controller.requerimiento3(catalog, pais1, pais2)
             print("Ruta mas corta: ")
-            respuesta3(puesta[0])
-            print('Total distancia de la ruta ' + str(puesta[1]) + 'Km')
+            respuestaxd(puesta[0])
+            print('Total distancia de la ruta ' + str(puesta[1]) + ' Km')
         elif int(inputs[0]) == 5:
-            pass
-
+            r = controller.requerimiento4(catalog)
+            print('Numero de nodos conectados a la red de expancion minima: ' + str(r[0]))
+            print('Costo totaal de la red de expancion minima: ' + str(r[1]) + ' Km')
+            print('Rama mas larga: ')
+            respuestaxd(r[2])
         elif int(inputs[0]) == 6:
-            pass 
-
+            poin = input('Ingrese el Nombre del landing point: ')
+            rere = controller.requerimiento5(catalog, poin)
+            print('Afecta un total de: ' + str(lt.size(rere)) + ' pises')
+            print('Lista paises')
+            for p in lt.iterator(rere):
+                print(str(p[0]))
         elif int(inputs[0]) == 7:
             pass
 

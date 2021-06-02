@@ -102,5 +102,14 @@ def requerimiento3(catalog, pais1, pais2):
     return model.requerimiento3(catalog, pais1, pais2)
 
 
+def requerimiento4(catalog):
+    return model.requerimiento4(catalog)
+
+
+def requerimiento5(catalog, poin):
+    return model.requerimiento5(catalog, poin)
+
+
 def requerimiento8(catalog):
     return model.requerimiento8(catalog)
+
