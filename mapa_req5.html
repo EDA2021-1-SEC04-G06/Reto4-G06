@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<head>    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_885292b150414a0a8a2e01e9ec3b1ee3 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+            </style>
+        
+</head>
+<body>    
+    
+            <div class="folium-map" id="map_885292b150414a0a8a2e01e9ec3b1ee3" ></div>
+        
+</body>
+<script>    
+    
+            var map_885292b150414a0a8a2e01e9ec3b1ee3 = L.map(
+                "map_885292b150414a0a8a2e01e9ec3b1ee3",
+                {
+                    center: [4.6, -74.083333],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 10,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_ed28d210024b46b5b1730c405eaa4784 = L.tileLayer(
+                "https://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}.jpg",
+                {"attribution": "Map tiles by \u003ca href=\"http://stamen.com\"\u003eStamen Design\u003c/a\u003e, under \u003ca href=\"http://creativecommons.org/licenses/by/3.0\"\u003eCC BY 3.0\u003c/a\u003e. Data by \u0026copy; \u003ca href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca href=\"http://creativecommons.org/licenses/by-sa/3.0\"\u003eCC BY SA\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            ).addTo(map_885292b150414a0a8a2e01e9ec3b1ee3);
+        
+    
+            var marker_762ab5c7dfe6458fb7f46c4b6f1bc02d = L.marker(
+                [-3.718834, -38.542965],
+                {}
+            ).addTo(map_885292b150414a0a8a2e01e9ec3b1ee3);
+        
+    
+        var popup_2cd1cf5e5a8b4efaad8a57f5d8536584 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_f19a3306b33c4b3194a22c5e526e88c5 = $(`<div id="html_f19a3306b33c4b3194a22c5e526e88c5" style="width: 100.0%; height: 100.0%;">Fortaleza, Brazil</div>`)[0];
+            popup_2cd1cf5e5a8b4efaad8a57f5d8536584.setContent(html_f19a3306b33c4b3194a22c5e526e88c5);
+        
+
+        marker_762ab5c7dfe6458fb7f46c4b6f1bc02d.bindPopup(popup_2cd1cf5e5a8b4efaad8a57f5d8536584)
+        ;
+
+        
+    
+    
+            var marker_1b27634a89c74020b11951ecedeb1f38 = L.marker(
+                [8.966666666666667, -79.533333],
+                {}
+            ).addTo(map_885292b150414a0a8a2e01e9ec3b1ee3);
+        
+    
+        var popup_73cbf60f3a864dcb93b3898d05d4b53e = L.popup({"maxWidth": "100%"});
+
+        
+            var html_d8b6ab80c9fa4b84aec007fee3d3249b = $(`<div id="html_d8b6ab80c9fa4b84aec007fee3d3249b" style="width: 100.0%; height: 100.0%;">panama city, Panama</div>`)[0];
+            popup_73cbf60f3a864dcb93b3898d05d4b53e.setContent(html_d8b6ab80c9fa4b84aec007fee3d3249b);
+        
+
+        marker_1b27634a89c74020b11951ecedeb1f38.bindPopup(popup_73cbf60f3a864dcb93b3898d05d4b53e)
+        ;
+
+        
+    
+    
+            var poly_line_0505095930334c289c3da89342efba9c = L.polyline(
+                [[-3.718834, -38.542965], [8.966666666666667, -79.533333]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_885292b150414a0a8a2e01e9ec3b1ee3);
+        
+    
+            poly_line_0505095930334c289c3da89342efba9c.bindTooltip(
+                `<div>
+                     south-american-crossing-sac
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_60733f8e67254c829a58c47f8c33a134 = L.marker(
+                [19.433333333333334, -99.133333],
+                {}
+            ).addTo(map_885292b150414a0a8a2e01e9ec3b1ee3);
+        
+    
+        var popup_5b1112da5414496683fc51f51ed4bf21 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_bb1862d19cf0480fa84bbd74804bebe3 = $(`<div id="html_bb1862d19cf0480fa84bbd74804bebe3" style="width: 100.0%; height: 100.0%;">mexico city, Mexico</div>`)[0];
+            popup_5b1112da5414496683fc51f51ed4bf21.setContent(html_bb1862d19cf0480fa84bbd74804bebe3);
+        
+
+        marker_60733f8e67254c829a58c47f8c33a134.bindPopup(popup_5b1112da5414496683fc51f51ed4bf21)
+        ;
+
+        
+    
+    
+            var poly_line_7bd76314748f424cbcf6cb8d75f73187 = L.polyline(
+                [[-3.718834, -38.542965], [19.433333333333334, -99.133333]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_885292b150414a0a8a2e01e9ec3b1ee3);
+        
+    
+            poly_line_7bd76314748f424cbcf6cb8d75f73187.bindTooltip(
+                `<div>
+                     america-movil-submarine-cable-system-1-amx-1
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_61b441045fd242ec87343b48050e9c69 = L.marker(
+                [14.6, -61.0833],
+                {}
+            ).addTo(map_885292b150414a0a8a2e01e9ec3b1ee3);
+        
+    
+        var popup_fffb2fe359154d508deea2cc80305705 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_d43334cca016490e88b523a239d60f1f = $(`<div id="html_d43334cca016490e88b523a239d60f1f" style="width: 100.0%; height: 100.0%;">fortdefrance, Martinique</div>`)[0];
+            popup_fffb2fe359154d508deea2cc80305705.setContent(html_d43334cca016490e88b523a239d60f1f);
+        
+
+        marker_61b441045fd242ec87343b48050e9c69.bindPopup(popup_fffb2fe359154d508deea2cc80305705)
+        ;
+
+        
+    
+    
+            var poly_line_46d93dd752404cde9d4556faa5a66bb8 = L.polyline(
+                [[-3.718834, -38.542965], [14.6, -61.0833]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_885292b150414a0a8a2e01e9ec3b1ee3);
+        
+    
+            poly_line_46d93dd752404cde9d4556faa5a66bb8.bindTooltip(
+                `<div>
+                     americas-ii
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_a80bb160091a449cb97240ffe70f2fa1 = L.marker(
+                [4.938611, -52.335],
+                {}
+            ).addTo(map_885292b150414a0a8a2e01e9ec3b1ee3);
+        
+    
+        var popup_0f273e1b748c45178b0104c3c68c0d15 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_60fb899906bb42a7b69676e63d7adf9c = $(`<div id="html_60fb899906bb42a7b69676e63d7adf9c" style="width: 100.0%; height: 100.0%;">cayena, French Guiana</div>`)[0];
+            popup_0f273e1b748c45178b0104c3c68c0d15.setContent(html_60fb899906bb42a7b69676e63d7adf9c);
+        
+
+        marker_a80bb160091a449cb97240ffe70f2fa1.bindPopup(popup_0f273e1b748c45178b0104c3c68c0d15)
+        ;
+
+        
+    
+    
+            var poly_line_22082abbe4fe4c8898dd61279609310c = L.polyline(
+                [[-3.718834, -38.542965], [4.938611, -52.335]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_885292b150414a0a8a2e01e9ec3b1ee3);
+        
+    
+            poly_line_22082abbe4fe4c8898dd61279609310c.bindTooltip(
+                `<div>
+                     americas-ii
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_91ecb9c870cf4f73acca8f319cb2025c = L.marker(
+                [14.733333333333333, -17.633333],
+                {}
+            ).addTo(map_885292b150414a0a8a2e01e9ec3b1ee3);
+        
+    
+        var popup_99e013c146804d91bba10fc6fd9e902b = L.popup({"maxWidth": "100%"});
+
+        
+            var html_2a221db1715f4add8f0cd2d749a55f3b = $(`<div id="html_2a221db1715f4add8f0cd2d749a55f3b" style="width: 100.0%; height: 100.0%;">dakar, Senegal</div>`)[0];
+            popup_99e013c146804d91bba10fc6fd9e902b.setContent(html_2a221db1715f4add8f0cd2d749a55f3b);
+        
+
+        marker_91ecb9c870cf4f73acca8f319cb2025c.bindPopup(popup_99e013c146804d91bba10fc6fd9e902b)
+        ;
+
+        
+    
+    
+            var poly_line_464d64606f5b4b0390f1b518a1d27408 = L.polyline(
+                [[-3.718834, -38.542965], [14.733333333333333, -17.633333]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_885292b150414a0a8a2e01e9ec3b1ee3);
+        
+    
+            poly_line_464d64606f5b4b0390f1b518a1d27408.bindTooltip(
+                `<div>
+                     atlantis-2
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_615eb7b839ef41bfb3a65f36f653042b = L.marker(
+                [18.466666666666665, -66.116667],
+                {}
+            ).addTo(map_885292b150414a0a8a2e01e9ec3b1ee3);
+        
+    
+        var popup_b92583d928e440c8a72b4236388fc02c = L.popup({"maxWidth": "100%"});
+
+        
+            var html_25d98322794b42e8aefbbc2550f39a22 = $(`<div id="html_25d98322794b42e8aefbbc2550f39a22" style="width: 100.0%; height: 100.0%;">san juan, Puerto Rico</div>`)[0];
+            popup_b92583d928e440c8a72b4236388fc02c.setContent(html_25d98322794b42e8aefbbc2550f39a22);
+        
+
+        marker_615eb7b839ef41bfb3a65f36f653042b.bindPopup(popup_b92583d928e440c8a72b4236388fc02c)
+        ;
+
+        
+    
+    
+            var poly_line_c8bad293a847403a988d331d617e2dbd = L.polyline(
+                [[-3.718834, -38.542965], [18.466666666666665, -66.116667]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_885292b150414a0a8a2e01e9ec3b1ee3);
+        
+    
+            poly_line_c8bad293a847403a988d331d617e2dbd.bindTooltip(
+                `<div>
+                     america-movil-submarine-cable-system-1-amx-1
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_22b546eecffe4097a67dc0be20ce53df = L.marker(
+                [38.71666666666667, -9.133333],
+                {}
+            ).addTo(map_885292b150414a0a8a2e01e9ec3b1ee3);
+        
+    
+        var popup_372a535d4eff4eaba80427cb70bf4d8d = L.popup({"maxWidth": "100%"});
+
+        
+            var html_18ef36e964e9405ca0267888648abca3 = $(`<div id="html_18ef36e964e9405ca0267888648abca3" style="width: 100.0%; height: 100.0%;">lisbon, Portugal</div>`)[0];
+            popup_372a535d4eff4eaba80427cb70bf4d8d.setContent(html_18ef36e964e9405ca0267888648abca3);
+        
+
+        marker_22b546eecffe4097a67dc0be20ce53df.bindPopup(popup_372a535d4eff4eaba80427cb70bf4d8d)
+        ;
+
+        
+    
+    
+            var poly_line_3bc048285910464f9e1a59443d538b91 = L.polyline(
+                [[-3.718834, -38.542965], [38.71666666666667, -9.133333]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_885292b150414a0a8a2e01e9ec3b1ee3);
+        
+    
+            poly_line_3bc048285910464f9e1a59443d538b91.bindTooltip(
+                `<div>
+                     atlantis-2
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_86fb51cf7d574a6bb1c392c01d928327 = L.marker(
+                [-12.05, -77.05],
+                {}
+            ).addTo(map_885292b150414a0a8a2e01e9ec3b1ee3);
+        
+    
+        var popup_96c65b1351ed4ff9b8f7fa1caa419952 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_aa3050cbc76a4347bd5165dc977ebfe5 = $(`<div id="html_aa3050cbc76a4347bd5165dc977ebfe5" style="width: 100.0%; height: 100.0%;">lima, Peru</div>`)[0];
+            popup_96c65b1351ed4ff9b8f7fa1caa419952.setContent(html_aa3050cbc76a4347bd5165dc977ebfe5);
+        
+
+        marker_86fb51cf7d574a6bb1c392c01d928327.bindPopup(popup_96c65b1351ed4ff9b8f7fa1caa419952)
+        ;
+
+        
+    
+    
+            var poly_line_6ebf9f283d7e46c696b1c3c3feb38bd6 = L.polyline(
+                [[-3.718834, -38.542965], [-12.05, -77.05]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_885292b150414a0a8a2e01e9ec3b1ee3);
+        
+    
+            poly_line_6ebf9f283d7e46c696b1c3c3feb38bd6.bindTooltip(
+                `<div>
+                     south-america-1-sam-1
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_67b26dced1ae4ea0a1f2237029b62a4e = L.marker(
+                [10.483333333333333, -66.866667],
+                {}
+            ).addTo(map_885292b150414a0a8a2e01e9ec3b1ee3);
+        
+    
+        var popup_4827f0917ceb448eafb7a7b896b85b71 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_ab40d91279c14441870fcde4d3c494bb = $(`<div id="html_ab40d91279c14441870fcde4d3c494bb" style="width: 100.0%; height: 100.0%;">caracas, Venezuela</div>`)[0];
+            popup_4827f0917ceb448eafb7a7b896b85b71.setContent(html_ab40d91279c14441870fcde4d3c494bb);
+        
+
+        marker_67b26dced1ae4ea0a1f2237029b62a4e.bindPopup(popup_4827f0917ceb448eafb7a7b896b85b71)
+        ;
+
+        
+    
+    
+            var poly_line_b966c19c88bb40a78017966c4dc42220 = L.polyline(
+                [[-3.718834, -38.542965], [10.483333333333333, -66.866667]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_885292b150414a0a8a2e01e9ec3b1ee3);
+        
+    
+            poly_line_b966c19c88bb40a78017966c4dc42220.bindTooltip(
+                `<div>
+                     americas-ii
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_fa86f1fa4b1b4e898a4d8cea63c0eedf = L.marker(
+                [38.883333, -77.0],
+                {}
+            ).addTo(map_885292b150414a0a8a2e01e9ec3b1ee3);
+        
+    
+        var popup_2a760717d9ac4333a68f36219b5acf1c = L.popup({"maxWidth": "100%"});
+
+        
+            var html_bd121de28e5b473c8af0eb9ad65c9243 = $(`<div id="html_bd121de28e5b473c8af0eb9ad65c9243" style="width: 100.0%; height: 100.0%;">washington, d.c., United States</div>`)[0];
+            popup_2a760717d9ac4333a68f36219b5acf1c.setContent(html_bd121de28e5b473c8af0eb9ad65c9243);
+        
+
+        marker_fa86f1fa4b1b4e898a4d8cea63c0eedf.bindPopup(popup_2a760717d9ac4333a68f36219b5acf1c)
+        ;
+
+        
+    
+    
+            var poly_line_9142d56e654443919ac3920a9110d761 = L.polyline(
+                [[-3.718834, -38.542965], [38.883333, -77.0]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_885292b150414a0a8a2e01e9ec3b1ee3);
+        
+    
+            poly_line_9142d56e654443919ac3920a9110d761.bindTooltip(
+                `<div>
+                     america-movil-submarine-cable-system-1-amx-1
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_adae9df4385c4420b4580f82036976ce = L.marker(
+                [10.65, -61.516667],
+                {}
+            ).addTo(map_885292b150414a0a8a2e01e9ec3b1ee3);
+        
+    
+        var popup_471a2e36fbf346d0af7a037a214bd334 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_0719ddee650345049e889abbc7619bde = $(`<div id="html_0719ddee650345049e889abbc7619bde" style="width: 100.0%; height: 100.0%;">port of spain, Trinidad and Tobago</div>`)[0];
+            popup_471a2e36fbf346d0af7a037a214bd334.setContent(html_0719ddee650345049e889abbc7619bde);
+        
+
+        marker_adae9df4385c4420b4580f82036976ce.bindPopup(popup_471a2e36fbf346d0af7a037a214bd334)
+        ;
+
+        
+    
+    
+            var poly_line_052a6941490b496cb73f1dd8c9c0e630 = L.polyline(
+                [[-3.718834, -38.542965], [10.65, -61.516667]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_885292b150414a0a8a2e01e9ec3b1ee3);
+        
+    
+            poly_line_052a6941490b496cb73f1dd8c9c0e630.bindTooltip(
+                `<div>
+                     americas-ii
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_1fd4a75a2aa44c88a66b9cb76bac9caf = L.marker(
+                [40.4, -3.683333],
+                {}
+            ).addTo(map_885292b150414a0a8a2e01e9ec3b1ee3);
+        
+    
+        var popup_d82ee464643b465b9d38254f212f515c = L.popup({"maxWidth": "100%"});
+
+        
+            var html_f63528c3e07449ca8864cafe060af370 = $(`<div id="html_f63528c3e07449ca8864cafe060af370" style="width: 100.0%; height: 100.0%;">madrid, Spain</div>`)[0];
+            popup_d82ee464643b465b9d38254f212f515c.setContent(html_f63528c3e07449ca8864cafe060af370);
+        
+
+        marker_1fd4a75a2aa44c88a66b9cb76bac9caf.bindPopup(popup_d82ee464643b465b9d38254f212f515c)
+        ;
+
+        
+    
+    
+            var poly_line_3b6515444db34e3aad9823e86c70bf02 = L.polyline(
+                [[-3.718834, -38.542965], [40.4, -3.683333]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_885292b150414a0a8a2e01e9ec3b1ee3);
+        
+    
+            poly_line_3b6515444db34e3aad9823e86c70bf02.bindTooltip(
+                `<div>
+                     americas-ii
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_f93e65cb7e2545f48162ff1126e63aba = L.marker(
+                [32.28333333333333, -64.783333],
+                {}
+            ).addTo(map_885292b150414a0a8a2e01e9ec3b1ee3);
+        
+    
+        var popup_5d0b48169bd046d68685942885eada23 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_2f24bf2e24254c0b9809a3b5c90dd714 = $(`<div id="html_2f24bf2e24254c0b9809a3b5c90dd714" style="width: 100.0%; height: 100.0%;">hamilton, Bermuda</div>`)[0];
+            popup_5d0b48169bd046d68685942885eada23.setContent(html_2f24bf2e24254c0b9809a3b5c90dd714);
+        
+
+        marker_f93e65cb7e2545f48162ff1126e63aba.bindPopup(popup_5d0b48169bd046d68685942885eada23)
+        ;
+
+        
+    
+    
+            var poly_line_228e9742651942aea77a7a2cfa7b8db3 = L.polyline(
+                [[-3.718834, -38.542965], [32.28333333333333, -64.783333]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_885292b150414a0a8a2e01e9ec3b1ee3);
+        
+    
+            poly_line_228e9742651942aea77a7a2cfa7b8db3.bindTooltip(
+                `<div>
+                     globenet
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_f862b5ca6e1645298354dcdf0ead9ff1 = L.marker(
+                [14.616666666666667, -90.516667],
+                {}
+            ).addTo(map_885292b150414a0a8a2e01e9ec3b1ee3);
+        
+    
+        var popup_ba8aa312119c4dd7bf170ffd260089f5 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_52e09bbe3e8c4208a2d599ea834a87a7 = $(`<div id="html_52e09bbe3e8c4208a2d599ea834a87a7" style="width: 100.0%; height: 100.0%;">guatemala city, Guatemala</div>`)[0];
+            popup_ba8aa312119c4dd7bf170ffd260089f5.setContent(html_52e09bbe3e8c4208a2d599ea834a87a7);
+        
+
+        marker_f862b5ca6e1645298354dcdf0ead9ff1.bindPopup(popup_ba8aa312119c4dd7bf170ffd260089f5)
+        ;
+
+        
+    
+    
+            var poly_line_177cde78550f428a81d824a19c5f6cd6 = L.polyline(
+                [[-3.718834, -38.542965], [14.616666666666667, -90.516667]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_885292b150414a0a8a2e01e9ec3b1ee3);
+        
+    
+            poly_line_177cde78550f428a81d824a19c5f6cd6.bindTooltip(
+                `<div>
+                     america-movil-submarine-cable-system-1-amx-1
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_da8dad6f4aaa4b5380635b129fa64e48 = L.marker(
+                [13.7, -89.2],
+                {}
+            ).addTo(map_885292b150414a0a8a2e01e9ec3b1ee3);
+        
+    
+        var popup_4fd94ce9a25d4cdabe26d47683b5e076 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_a6745a402ad74899a610d9836539931e = $(`<div id="html_a6745a402ad74899a610d9836539931e" style="width: 100.0%; height: 100.0%;">san salvador, El Salvador</div>`)[0];
+            popup_4fd94ce9a25d4cdabe26d47683b5e076.setContent(html_a6745a402ad74899a610d9836539931e);
+        
+
+        marker_da8dad6f4aaa4b5380635b129fa64e48.bindPopup(popup_4fd94ce9a25d4cdabe26d47683b5e076)
+        ;
+
+        
+    
+    
+            var poly_line_5a55a3d186f94bf48ccc7828ff5e7dd3 = L.polyline(
+                [[-3.718834, -38.542965], [13.7, -89.2]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_885292b150414a0a8a2e01e9ec3b1ee3);
+        
+    
+            poly_line_5a55a3d186f94bf48ccc7828ff5e7dd3.bindTooltip(
+                `<div>
+                     south-america-1-sam-1
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_94bdad1396664ab285aa8366ee115b25 = L.marker(
+                [12.116667, -68.933333],
+                {}
+            ).addTo(map_885292b150414a0a8a2e01e9ec3b1ee3);
+        
+    
+        var popup_51aad834a0194cea95220e9e384bf776 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_703f549ead6740d98deba4c7c8432861 = $(`<div id="html_703f549ead6740d98deba4c7c8432861" style="width: 100.0%; height: 100.0%;">willemstad, Curaçao</div>`)[0];
+            popup_51aad834a0194cea95220e9e384bf776.setContent(html_703f549ead6740d98deba4c7c8432861);
+        
+
+        marker_94bdad1396664ab285aa8366ee115b25.bindPopup(popup_51aad834a0194cea95220e9e384bf776)
+        ;
+
+        
+    
+    
+            var poly_line_226e8d24e61a45eaa6b9550fcf0ff4c9 = L.polyline(
+                [[-3.718834, -38.542965], [12.116667, -68.933333]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_885292b150414a0a8a2e01e9ec3b1ee3);
+        
+    
+            poly_line_226e8d24e61a45eaa6b9550fcf0ff4c9.bindTooltip(
+                `<div>
+                     americas-ii
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_18c673e3e0db4b62ae5bb82b15b78b52 = L.marker(
+                [3.8666666666666663, 11.516667],
+                {}
+            ).addTo(map_885292b150414a0a8a2e01e9ec3b1ee3);
+        
+    
+        var popup_96de37d2b5e44c1d9f7c3d6385e4b135 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_8edcbdbec82848f8830d02576c620e86 = $(`<div id="html_8edcbdbec82848f8830d02576c620e86" style="width: 100.0%; height: 100.0%;">yaounde, Cameroon</div>`)[0];
+            popup_96de37d2b5e44c1d9f7c3d6385e4b135.setContent(html_8edcbdbec82848f8830d02576c620e86);
+        
+
+        marker_18c673e3e0db4b62ae5bb82b15b78b52.bindPopup(popup_96de37d2b5e44c1d9f7c3d6385e4b135)
+        ;
+
+        
+    
+    
+            var poly_line_d57b0a1cc9d048f492da8d33798e48f8 = L.polyline(
+                [[-3.718834, -38.542965], [3.8666666666666663, 11.516667]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_885292b150414a0a8a2e01e9ec3b1ee3);
+        
+    
+            poly_line_d57b0a1cc9d048f492da8d33798e48f8.bindTooltip(
+                `<div>
+                     south-atlantic-inter-link-sail
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_c5f626cbecb14ac88871983e04b501b4 = L.marker(
+                [14.916666666666666, -23.5],
+                {}
+            ).addTo(map_885292b150414a0a8a2e01e9ec3b1ee3);
+        
+    
+        var popup_1d1856f3f0d346ecb0357f9c79598417 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_56c62081bac743ef91acd9b9ff2e371a = $(`<div id="html_56c62081bac743ef91acd9b9ff2e371a" style="width: 100.0%; height: 100.0%;">praia, Cape Verde</div>`)[0];
+            popup_1d1856f3f0d346ecb0357f9c79598417.setContent(html_56c62081bac743ef91acd9b9ff2e371a);
+        
+
+        marker_c5f626cbecb14ac88871983e04b501b4.bindPopup(popup_1d1856f3f0d346ecb0357f9c79598417)
+        ;
+
+        
+    
+    
+            var poly_line_d183589622c4471582bc72b125ec28f6 = L.polyline(
+                [[-3.718834, -38.542965], [14.916666666666666, -23.5]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_885292b150414a0a8a2e01e9ec3b1ee3);
+        
+    
+            poly_line_d183589622c4471582bc72b125ec28f6.bindTooltip(
+                `<div>
+                     atlantis-2
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_9ab32a0d082c4ee696846aa10a313718 = L.marker(
+                [-15.783333333333331, -47.916667],
+                {}
+            ).addTo(map_885292b150414a0a8a2e01e9ec3b1ee3);
+        
+    
+        var popup_534e918e2d1840d8a7244b40e58c3cbe = L.popup({"maxWidth": "100%"});
+
+        
+            var html_e187a8a5992d48c1a487adf3137156cc = $(`<div id="html_e187a8a5992d48c1a487adf3137156cc" style="width: 100.0%; height: 100.0%;">brasilia, Brazil</div>`)[0];
+            popup_534e918e2d1840d8a7244b40e58c3cbe.setContent(html_e187a8a5992d48c1a487adf3137156cc);
+        
+
+        marker_9ab32a0d082c4ee696846aa10a313718.bindPopup(popup_534e918e2d1840d8a7244b40e58c3cbe)
+        ;
+
+        
+    
+    
+            var poly_line_c9dca6a75e8d4a769d69331a0511bfac = L.polyline(
+                [[-3.718834, -38.542965], [-15.783333333333331, -47.916667]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_885292b150414a0a8a2e01e9ec3b1ee3);
+        
+    
+            poly_line_c9dca6a75e8d4a769d69331a0511bfac.bindTooltip(
+                `<div>
+                     america-movil-submarine-cable-system-1-amx-1
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_6ce3567fdd7c4480b0f7525ac9ee45c8 = L.marker(
+                [-16.5, -68.15],
+                {}
+            ).addTo(map_885292b150414a0a8a2e01e9ec3b1ee3);
+        
+    
+        var popup_fdd53230d6694eae875a35707e4f19a1 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_b7c018ecb4a34d6eabb3ad9622488b0a = $(`<div id="html_b7c018ecb4a34d6eabb3ad9622488b0a" style="width: 100.0%; height: 100.0%;">la paz, Bolivia</div>`)[0];
+            popup_fdd53230d6694eae875a35707e4f19a1.setContent(html_b7c018ecb4a34d6eabb3ad9622488b0a);
+        
+
+        marker_6ce3567fdd7c4480b0f7525ac9ee45c8.bindPopup(popup_fdd53230d6694eae875a35707e4f19a1)
+        ;
+
+        
+    
+    
+            var poly_line_8931706ab14e4b12a0da429459e6cdc0 = L.polyline(
+                [[-3.718834, -38.542965], [-16.5, -68.15]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_885292b150414a0a8a2e01e9ec3b1ee3);
+        
+    
+            poly_line_8931706ab14e4b12a0da429459e6cdc0.bindTooltip(
+                `<div>
+                     south-america-1-sam-1
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_5a08792b9d0944c193fe491dc046734d = L.marker(
+                [15.3, -61.4],
+                {}
+            ).addTo(map_885292b150414a0a8a2e01e9ec3b1ee3);
+        
+    
+        var popup_02c78889c9ac4ab2812ed2a43ac593d9 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_9ed13ce88a9449f2b1ff9c42c35e06a2 = $(`<div id="html_9ed13ce88a9449f2b1ff9c42c35e06a2" style="width: 100.0%; height: 100.0%;">roseau, Dominica</div>`)[0];
+            popup_02c78889c9ac4ab2812ed2a43ac593d9.setContent(html_9ed13ce88a9449f2b1ff9c42c35e06a2);
+        
+
+        marker_5a08792b9d0944c193fe491dc046734d.bindPopup(popup_02c78889c9ac4ab2812ed2a43ac593d9)
+        ;
+
+        
+    
+    
+            var poly_line_1d957c56479e42469d63dc24a5ca0f7a = L.polyline(
+                [[-3.718834, -38.542965], [15.3, -61.4]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_885292b150414a0a8a2e01e9ec3b1ee3);
+        
+    
+            poly_line_1d957c56479e42469d63dc24a5ca0f7a.bindTooltip(
+                `<div>
+                     america-movil-submarine-cable-system-1-amx-1
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_7a62632fc6394be19b83c0232fb70b61 = L.marker(
+                [4.6, -74.083333],
+                {}
+            ).addTo(map_885292b150414a0a8a2e01e9ec3b1ee3);
+        
+    
+        var popup_0f0506b146bc49adbebd2aebf3afd253 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_67a1332c7dd34c9594c85dd4dbe04892 = $(`<div id="html_67a1332c7dd34c9594c85dd4dbe04892" style="width: 100.0%; height: 100.0%;">bogota, Colombia</div>`)[0];
+            popup_0f0506b146bc49adbebd2aebf3afd253.setContent(html_67a1332c7dd34c9594c85dd4dbe04892);
+        
+
+        marker_7a62632fc6394be19b83c0232fb70b61.bindPopup(popup_0f0506b146bc49adbebd2aebf3afd253)
+        ;
+
+        
+    
+    
+            var poly_line_f3c61a658ffc4dc792c3153ecdd41d59 = L.polyline(
+                [[-3.718834, -38.542965], [4.6, -74.083333]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_885292b150414a0a8a2e01e9ec3b1ee3);
+        
+    
+            poly_line_f3c61a658ffc4dc792c3153ecdd41d59.bindTooltip(
+                `<div>
+                     america-movil-submarine-cable-system-1-amx-1
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_72ec951c9b9c4a3bac389254cf67ca1b = L.marker(
+                [-33.45, -70.666667],
+                {}
+            ).addTo(map_885292b150414a0a8a2e01e9ec3b1ee3);
+        
+    
+        var popup_bfcce1e54ec14c3ab576cd068f113eb1 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_451f57831bba46feaf26717b899f5e38 = $(`<div id="html_451f57831bba46feaf26717b899f5e38" style="width: 100.0%; height: 100.0%;">santiago, Chile</div>`)[0];
+            popup_bfcce1e54ec14c3ab576cd068f113eb1.setContent(html_451f57831bba46feaf26717b899f5e38);
+        
+
+        marker_72ec951c9b9c4a3bac389254cf67ca1b.bindPopup(popup_bfcce1e54ec14c3ab576cd068f113eb1)
+        ;
+
+        
+    
+    
+            var poly_line_fa76a7ff640245008763524205e4a19a = L.polyline(
+                [[-3.718834, -38.542965], [-33.45, -70.666667]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_885292b150414a0a8a2e01e9ec3b1ee3);
+        
+    
+            poly_line_fa76a7ff640245008763524205e4a19a.bindTooltip(
+                `<div>
+                     south-america-1-sam-1
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_09c4b40302ae4d69b08a083b8f27f267 = L.marker(
+                [4.366666666666666, 18.583333],
+                {}
+            ).addTo(map_885292b150414a0a8a2e01e9ec3b1ee3);
+        
+    
+        var popup_681dbe0910af4d14b9e72821a62a39c8 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_b29273f6a8e744c8ad9d5edcda77a27d = $(`<div id="html_b29273f6a8e744c8ad9d5edcda77a27d" style="width: 100.0%; height: 100.0%;">bangui, Central African Republic</div>`)[0];
+            popup_681dbe0910af4d14b9e72821a62a39c8.setContent(html_b29273f6a8e744c8ad9d5edcda77a27d);
+        
+
+        marker_09c4b40302ae4d69b08a083b8f27f267.bindPopup(popup_681dbe0910af4d14b9e72821a62a39c8)
+        ;
+
+        
+    
+    
+            var poly_line_bdffc3a1656749869c83d15283305ddc = L.polyline(
+                [[-3.718834, -38.542965], [4.366666666666666, 18.583333]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_885292b150414a0a8a2e01e9ec3b1ee3);
+        
+    
+            poly_line_bdffc3a1656749869c83d15283305ddc.bindTooltip(
+                `<div>
+                     south-atlantic-inter-link-sail
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_b10f4563b2c740e2bdf2d529851b45e6 = L.marker(
+                [-34.583333333333336, -58.666667],
+                {}
+            ).addTo(map_885292b150414a0a8a2e01e9ec3b1ee3);
+        
+    
+        var popup_9276a79575f140048dc55d6b8bdd9171 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_b4ad67f4d7254dc89e48b4f287a2b569 = $(`<div id="html_b4ad67f4d7254dc89e48b4f287a2b569" style="width: 100.0%; height: 100.0%;">buenos aires, Argentina</div>`)[0];
+            popup_9276a79575f140048dc55d6b8bdd9171.setContent(html_b4ad67f4d7254dc89e48b4f287a2b569);
+        
+
+        marker_b10f4563b2c740e2bdf2d529851b45e6.bindPopup(popup_9276a79575f140048dc55d6b8bdd9171)
+        ;
+
+        
+    
+    
+            var poly_line_674576ec98d348ce9a9d90352defbd2f = L.polyline(
+                [[-3.718834, -38.542965], [-34.583333333333336, -58.666667]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_885292b150414a0a8a2e01e9ec3b1ee3);
+        
+    
+            poly_line_674576ec98d348ce9a9d90352defbd2f.bindTooltip(
+                `<div>
+                     atlantis-2
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_c281082e369a431482acc37f3439fd10 = L.marker(
+                [-8.833333333333334, 13.216667],
+                {}
+            ).addTo(map_885292b150414a0a8a2e01e9ec3b1ee3);
+        
+    
+        var popup_3a0b27d66e09428184727b8bdd4b1048 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_5d2da395468b41a6bdda6722948f2a44 = $(`<div id="html_5d2da395468b41a6bdda6722948f2a44" style="width: 100.0%; height: 100.0%;">luanda, Angola</div>`)[0];
+            popup_3a0b27d66e09428184727b8bdd4b1048.setContent(html_5d2da395468b41a6bdda6722948f2a44);
+        
+
+        marker_c281082e369a431482acc37f3439fd10.bindPopup(popup_3a0b27d66e09428184727b8bdd4b1048)
+        ;
+
+        
+    
+    
+            var poly_line_f9cc91da914446359c7be18c9d54983f = L.polyline(
+                [[-3.718834, -38.542965], [-8.833333333333334, 13.216667]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_885292b150414a0a8a2e01e9ec3b1ee3);
+        
+    
+            poly_line_f9cc91da914446359c7be18c9d54983f.bindTooltip(
+                `<div>
+                     south-atlantic-cable-system-sacs
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_11ceecec672e49f4afc1cc512fb7151f = L.marker(
+                [-0.2166666666666666, -78.5],
+                {}
+            ).addTo(map_885292b150414a0a8a2e01e9ec3b1ee3);
+        
+    
+        var popup_ab29d7f5b6ca4ddcacd974df3f97e42c = L.popup({"maxWidth": "100%"});
+
+        
+            var html_3095c57c2f03434880f5539301c785ea = $(`<div id="html_3095c57c2f03434880f5539301c785ea" style="width: 100.0%; height: 100.0%;">quito, Ecuador</div>`)[0];
+            popup_ab29d7f5b6ca4ddcacd974df3f97e42c.setContent(html_3095c57c2f03434880f5539301c785ea);
+        
+
+        marker_11ceecec672e49f4afc1cc512fb7151f.bindPopup(popup_ab29d7f5b6ca4ddcacd974df3f97e42c)
+        ;
+
+        
+    
+    
+            var poly_line_32cc2b42f7044073bdd934fdf9672c6a = L.polyline(
+                [[-3.718834, -38.542965], [-0.2166666666666666, -78.5]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_885292b150414a0a8a2e01e9ec3b1ee3);
+        
+    
+            poly_line_32cc2b42f7044073bdd934fdf9672c6a.bindTooltip(
+                `<div>
+                     south-america-1-sam-1
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_7c929dc63a884da3b692acd9cb41d806 = L.marker(
+                [18.466666666666665, -69.9],
+                {}
+            ).addTo(map_885292b150414a0a8a2e01e9ec3b1ee3);
+        
+    
+        var popup_75dfa25903684e4abbd61d359da5a330 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_e8cb145c86f548a58aed5fc255884919 = $(`<div id="html_e8cb145c86f548a58aed5fc255884919" style="width: 100.0%; height: 100.0%;">santo domingo, Dominican Republic</div>`)[0];
+            popup_75dfa25903684e4abbd61d359da5a330.setContent(html_e8cb145c86f548a58aed5fc255884919);
+        
+
+        marker_7c929dc63a884da3b692acd9cb41d806.bindPopup(popup_75dfa25903684e4abbd61d359da5a330)
+        ;
+
+        
+    
+    
+            var poly_line_1bbbdd9a00fb4f1d805a8d5e16ffca71 = L.polyline(
+                [[-3.718834, -38.542965], [18.466666666666665, -69.9]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_885292b150414a0a8a2e01e9ec3b1ee3);
+        
+    
+            poly_line_1bbbdd9a00fb4f1d805a8d5e16ffca71.bindTooltip(
+                `<div>
+                     america-movil-submarine-cable-system-1-amx-1
+                 </div>`,
+                {"sticky": true}
+            );
+        
+</script>

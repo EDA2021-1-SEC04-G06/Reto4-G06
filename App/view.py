@@ -48,7 +48,6 @@ def printMenu():
     print("6- Requerimiento 5")
     print("7- Requerimiento 6")
     print("8- Requerimiento 7")
-    print("9- Requerimiento 8")
     print("0- Salir")
     print("*******************************************")
 catalog = None
@@ -129,10 +128,6 @@ def thread_cycle():
         elif int(inputs[0]) == 8:
             pass
 
-        elif int(inputs[0]) == 9:
-            print('Graficamos...')
-            m = controller.requerimiento8(catalog)
-            m
         else:
             sys.exit(0)
     sys.exit(0)

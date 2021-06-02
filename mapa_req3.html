@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<head>    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_b88382628fe54600896ea42f0d043ad2 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+            </style>
+        
+</head>
+<body>    
+    
+            <div class="folium-map" id="map_b88382628fe54600896ea42f0d043ad2" ></div>
+        
+</body>
+<script>    
+    
+            var map_b88382628fe54600896ea42f0d043ad2 = L.map(
+                "map_b88382628fe54600896ea42f0d043ad2",
+                {
+                    center: [4.6, -74.083333],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 10,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_7005d911b8d14240b48ed1f2a9d1270b = L.tileLayer(
+                "https://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}.jpg",
+                {"attribution": "Map tiles by \u003ca href=\"http://stamen.com\"\u003eStamen Design\u003c/a\u003e, under \u003ca href=\"http://creativecommons.org/licenses/by/3.0\"\u003eCC BY 3.0\u003c/a\u003e. Data by \u0026copy; \u003ca href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca href=\"http://creativecommons.org/licenses/by-sa/3.0\"\u003eCC BY SA\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            ).addTo(map_b88382628fe54600896ea42f0d043ad2);
+        
+    
+            var marker_73e337e1965b4f11ad1818ac6c16c891 = L.marker(
+                [4.6, -74.083333],
+                {}
+            ).addTo(map_b88382628fe54600896ea42f0d043ad2);
+        
+    
+        var popup_3a78bb2fc3614ed5b1f5b30d0e175f39 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_e6c42eabcbae4d0fab897bc26a01f3c7 = $(`<div id="html_e6c42eabcbae4d0fab897bc26a01f3c7" style="width: 100.0%; height: 100.0%;">bogota, Colombia</div>`)[0];
+            popup_3a78bb2fc3614ed5b1f5b30d0e175f39.setContent(html_e6c42eabcbae4d0fab897bc26a01f3c7);
+        
+
+        marker_73e337e1965b4f11ad1818ac6c16c891.bindPopup(popup_3a78bb2fc3614ed5b1f5b30d0e175f39)
+        ;
+
+        
+    
+    
+            var marker_96074c6cabef4b1992580d93149dbfef = L.marker(
+                [10.386695, -75.505683],
+                {}
+            ).addTo(map_b88382628fe54600896ea42f0d043ad2);
+        
+    
+        var popup_0ecfdac5b4e84240bc350d5a9b4e23c1 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_c0807f151d6045a8853ae514a6af66e8 = $(`<div id="html_c0807f151d6045a8853ae514a6af66e8" style="width: 100.0%; height: 100.0%;">bogota, Colombia</div>`)[0];
+            popup_0ecfdac5b4e84240bc350d5a9b4e23c1.setContent(html_c0807f151d6045a8853ae514a6af66e8);
+        
+
+        marker_96074c6cabef4b1992580d93149dbfef.bindPopup(popup_0ecfdac5b4e84240bc350d5a9b4e23c1)
+        ;
+
+        
+    
+    
+            var poly_line_45c2b7d7a0fd442191f1acc7c63f7b01 = L.polyline(
+                [[4.6, -74.083333], [10.386695, -75.505683]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_b88382628fe54600896ea42f0d043ad2);
+        
+    
+            poly_line_45c2b7d7a0fd442191f1acc7c63f7b01.bindTooltip(
+                `<div>
+                     CO
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_54122387b6204acf9516335ce0966e80 = L.marker(
+                [10.386695, -75.505683],
+                {}
+            ).addTo(map_b88382628fe54600896ea42f0d043ad2);
+        
+    
+        var popup_0d76aafdf0f54951b7e87268220045fd = L.popup({"maxWidth": "100%"});
+
+        
+            var html_2d8037a9c3864ebba7a8ebd06588466e = $(`<div id="html_2d8037a9c3864ebba7a8ebd06588466e" style="width: 100.0%; height: 100.0%;">Cartagena, Colombia</div>`)[0];
+            popup_0d76aafdf0f54951b7e87268220045fd.setContent(html_2d8037a9c3864ebba7a8ebd06588466e);
+        
+
+        marker_54122387b6204acf9516335ce0966e80.bindPopup(popup_0d76aafdf0f54951b7e87268220045fd)
+        ;
+
+        
+    
+    
+            var marker_bb590108034a4707971d1609581e1030 = L.marker(
+                [9.437336, -79.753544],
+                {}
+            ).addTo(map_b88382628fe54600896ea42f0d043ad2);
+        
+    
+        var popup_90257456fd46401e9f2925f6bc564cc9 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_2a6a25c3dd994894a2fc2e2637656413 = $(`<div id="html_2a6a25c3dd994894a2fc2e2637656413" style="width: 100.0%; height: 100.0%;">Cartagena, Colombia</div>`)[0];
+            popup_90257456fd46401e9f2925f6bc564cc9.setContent(html_2a6a25c3dd994894a2fc2e2637656413);
+        
+
+        marker_bb590108034a4707971d1609581e1030.bindPopup(popup_90257456fd46401e9f2925f6bc564cc9)
+        ;
+
+        
+    
+    
+            var poly_line_765e3ed69fe94792981bd9c3e8d5ba64 = L.polyline(
+                [[10.386695, -75.505683], [9.437336, -79.753544]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_b88382628fe54600896ea42f0d043ad2);
+        
+    
+            poly_line_765e3ed69fe94792981bd9c3e8d5ba64.bindTooltip(
+                `<div>
+                     caribbean-express-cx
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_831b8d52d7e848e0b2d6c7f0430cedcb = L.marker(
+                [9.437336, -79.753544],
+                {}
+            ).addTo(map_b88382628fe54600896ea42f0d043ad2);
+        
+    
+        var popup_6eafc9b5cec3494489dade9c082ebd08 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_75d8c588f9c64d4794d60af97e2fa0ce = $(`<div id="html_75d8c588f9c64d4794d60af97e2fa0ce" style="width: 100.0%; height: 100.0%;">Maria Chiquita, Panama</div>`)[0];
+            popup_6eafc9b5cec3494489dade9c082ebd08.setContent(html_75d8c588f9c64d4794d60af97e2fa0ce);
+        
+
+        marker_831b8d52d7e848e0b2d6c7f0430cedcb.bindPopup(popup_6eafc9b5cec3494489dade9c082ebd08)
+        ;
+
+        
+    
+    
+            var marker_9a84f02f26514f0ea556a8d57e33b9ac = L.marker(
+                [26.715358, -80.053348],
+                {}
+            ).addTo(map_b88382628fe54600896ea42f0d043ad2);
+        
+    
+        var popup_0d392a2eab9349808f3508b3ec7d8365 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_b964dedf8034433192475dd3341a7ba4 = $(`<div id="html_b964dedf8034433192475dd3341a7ba4" style="width: 100.0%; height: 100.0%;">Maria Chiquita, Panama</div>`)[0];
+            popup_0d392a2eab9349808f3508b3ec7d8365.setContent(html_b964dedf8034433192475dd3341a7ba4);
+        
+
+        marker_9a84f02f26514f0ea556a8d57e33b9ac.bindPopup(popup_0d392a2eab9349808f3508b3ec7d8365)
+        ;
+
+        
+    
+    
+            var poly_line_e2e18690af2c4a9386791e57adbbd68a = L.polyline(
+                [[9.437336, -79.753544], [26.715358, -80.053348]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_b88382628fe54600896ea42f0d043ad2);
+        
+    
+            poly_line_e2e18690af2c4a9386791e57adbbd68a.bindTooltip(
+                `<div>
+                     caribbean-express-cx
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_4b7f7e178bd749849e7efee9656df1eb = L.marker(
+                [26.715358, -80.053348],
+                {}
+            ).addTo(map_b88382628fe54600896ea42f0d043ad2);
+        
+    
+        var popup_29fbea880b8243e0ac4d208822b8bd34 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_78c8f0330e8e4013bf3bf15137ee2c85 = $(`<div id="html_78c8f0330e8e4013bf3bf15137ee2c85" style="width: 100.0%; height: 100.0%;">West Palm Beach, FL, United States</div>`)[0];
+            popup_29fbea880b8243e0ac4d208822b8bd34.setContent(html_78c8f0330e8e4013bf3bf15137ee2c85);
+        
+
+        marker_4b7f7e178bd749849e7efee9656df1eb.bindPopup(popup_29fbea880b8243e0ac4d208822b8bd34)
+        ;
+
+        
+    
+    
+            var marker_fdbd82f9c0c44a6693a6b2b4cb9d65b4 = L.marker(
+                [38.883333, -77.0],
+                {}
+            ).addTo(map_b88382628fe54600896ea42f0d043ad2);
+        
+    
+        var popup_3b0ccaf4141a4697972c969ad2b7ef5c = L.popup({"maxWidth": "100%"});
+
+        
+            var html_6abce368fb094ee080598cb602a19150 = $(`<div id="html_6abce368fb094ee080598cb602a19150" style="width: 100.0%; height: 100.0%;">West Palm Beach, FL, United States</div>`)[0];
+            popup_3b0ccaf4141a4697972c969ad2b7ef5c.setContent(html_6abce368fb094ee080598cb602a19150);
+        
+
+        marker_fdbd82f9c0c44a6693a6b2b4cb9d65b4.bindPopup(popup_3b0ccaf4141a4697972c969ad2b7ef5c)
+        ;
+
+        
+    
+    
+            var poly_line_2127094e5ba041f8b0440593afdf3cec = L.polyline(
+                [[26.715358, -80.053348], [38.883333, -77.0]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_b88382628fe54600896ea42f0d043ad2);
+        
+    
+            poly_line_2127094e5ba041f8b0440593afdf3cec.bindTooltip(
+                `<div>
+                     caribbean-express-cx
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_05e6a67bfc364677814dbe393733c113 = L.marker(
+                [38.883333, -77.0],
+                {}
+            ).addTo(map_b88382628fe54600896ea42f0d043ad2);
+        
+    
+        var popup_a17d9991034e4b24b7259b630b23948a = L.popup({"maxWidth": "100%"});
+
+        
+            var html_c148b06eabb8486aa30e999fc9278c3c = $(`<div id="html_c148b06eabb8486aa30e999fc9278c3c" style="width: 100.0%; height: 100.0%;">washington, d.c., United States</div>`)[0];
+            popup_a17d9991034e4b24b7259b630b23948a.setContent(html_c148b06eabb8486aa30e999fc9278c3c);
+        
+
+        marker_05e6a67bfc364677814dbe393733c113.bindPopup(popup_a17d9991034e4b24b7259b630b23948a)
+        ;
+
+        
+    
+    
+            var marker_e2aede42c6bc4e37937e9b0ccb6f2039 = L.marker(
+                [34.053394, -118.24535],
+                {}
+            ).addTo(map_b88382628fe54600896ea42f0d043ad2);
+        
+    
+        var popup_0c7d457f0e0648ba884a9e74d37d88f6 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_72f3570aa0a54c12987c36ba4a819060 = $(`<div id="html_72f3570aa0a54c12987c36ba4a819060" style="width: 100.0%; height: 100.0%;">washington, d.c., United States</div>`)[0];
+            popup_0c7d457f0e0648ba884a9e74d37d88f6.setContent(html_72f3570aa0a54c12987c36ba4a819060);
+        
+
+        marker_e2aede42c6bc4e37937e9b0ccb6f2039.bindPopup(popup_0c7d457f0e0648ba884a9e74d37d88f6)
+        ;
+
+        
+    
+    
+            var poly_line_39eabc31631d4384bcc19e80401c6ea5 = L.polyline(
+                [[38.883333, -77.0], [34.053394, -118.24535]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_b88382628fe54600896ea42f0d043ad2);
+        
+    
+            poly_line_39eabc31631d4384bcc19e80401c6ea5.bindTooltip(
+                `<div>
+                     US
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_b031ba7758eb4c5daf772ee0e19b4b02 = L.marker(
+                [34.053394, -118.24535],
+                {}
+            ).addTo(map_b88382628fe54600896ea42f0d043ad2);
+        
+    
+        var popup_8a7fdc4f6e034dcea36ea74edb64c6ea = L.popup({"maxWidth": "100%"});
+
+        
+            var html_db3b86301b074d089d58774a1e90cc3e = $(`<div id="html_db3b86301b074d089d58774a1e90cc3e" style="width: 100.0%; height: 100.0%;">Los Angeles, CA, United States</div>`)[0];
+            popup_8a7fdc4f6e034dcea36ea74edb64c6ea.setContent(html_db3b86301b074d089d58774a1e90cc3e);
+        
+
+        marker_b031ba7758eb4c5daf772ee0e19b4b02.bindPopup(popup_8a7fdc4f6e034dcea36ea74edb64c6ea)
+        ;
+
+        
+    
+    
+            var marker_c9f94f00e19a4290838c9f27e8225032 = L.marker(
+                [-6.17189, 106.827831],
+                {}
+            ).addTo(map_b88382628fe54600896ea42f0d043ad2);
+        
+    
+        var popup_78b38fe4f0b64d6ba357c797a54ae450 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_25d4811221664c41a0d25f392898f2e3 = $(`<div id="html_25d4811221664c41a0d25f392898f2e3" style="width: 100.0%; height: 100.0%;">Los Angeles, CA, United States</div>`)[0];
+            popup_78b38fe4f0b64d6ba357c797a54ae450.setContent(html_25d4811221664c41a0d25f392898f2e3);
+        
+
+        marker_c9f94f00e19a4290838c9f27e8225032.bindPopup(popup_78b38fe4f0b64d6ba357c797a54ae450)
+        ;
+
+        
+    
+    
+            var poly_line_f237bfd48bbb427c94e675e9390ff3af = L.polyline(
+                [[34.053394, -118.24535], [-6.17189, 106.827831]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_b88382628fe54600896ea42f0d043ad2);
+        
+    
+            poly_line_f237bfd48bbb427c94e675e9390ff3af.bindTooltip(
+                `<div>
+                     bifrost
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_804a4cf3edcf455cb0618c5e800dffc7 = L.marker(
+                [-6.17189, 106.827831],
+                {}
+            ).addTo(map_b88382628fe54600896ea42f0d043ad2);
+        
+    
+        var popup_a84312bf23d44af59804631eded7295e = L.popup({"maxWidth": "100%"});
+
+        
+            var html_a5978b07e125419b9630ac07cc04df29 = $(`<div id="html_a5978b07e125419b9630ac07cc04df29" style="width: 100.0%; height: 100.0%;">Jakarta, Indonesia</div>`)[0];
+            popup_a84312bf23d44af59804631eded7295e.setContent(html_a5978b07e125419b9630ac07cc04df29);
+        
+
+        marker_804a4cf3edcf455cb0618c5e800dffc7.bindPopup(popup_a84312bf23d44af59804631eded7295e)
+        ;
+
+        
+    
+    
+            var marker_ad8b803f04ce4d3198d6ad50ea021d15 = L.marker(
+                [-6.166666666666667, 106.816667],
+                {}
+            ).addTo(map_b88382628fe54600896ea42f0d043ad2);
+        
+    
+        var popup_d683168515634a78a506198ce039b8fe = L.popup({"maxWidth": "100%"});
+
+        
+            var html_78c60055ab2343859f741077ce8184a9 = $(`<div id="html_78c60055ab2343859f741077ce8184a9" style="width: 100.0%; height: 100.0%;">Jakarta, Indonesia</div>`)[0];
+            popup_d683168515634a78a506198ce039b8fe.setContent(html_78c60055ab2343859f741077ce8184a9);
+        
+
+        marker_ad8b803f04ce4d3198d6ad50ea021d15.bindPopup(popup_d683168515634a78a506198ce039b8fe)
+        ;
+
+        
+    
+    
+            var poly_line_d81328f33917490785875dfe41590179 = L.polyline(
+                [[-6.17189, 106.827831], [-6.166666666666667, 106.816667]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_b88382628fe54600896ea42f0d043ad2);
+        
+    
+            poly_line_d81328f33917490785875dfe41590179.bindTooltip(
+                `<div>
+                     bifrost
+                 </div>`,
+                {"sticky": true}
+            );
+        
+</script>

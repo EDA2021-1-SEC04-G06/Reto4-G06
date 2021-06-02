@@ -369,18 +369,46 @@ def requerimiento1(catalog, point1, point2):
             tr2 = True
         g += 1
     con = scc.stronglyConnected(catalog['compo'], ver1, ver2)
+    requerimiento8(catalog)
     return scc.connectedComponents(catalog['compo']), con
 
 
 def requerimiento2(catalog):
     verti = mp.keySet(catalog['points'])
     listaa = lt.newList('ARRAY_LIST')
+    mayor = 0
     for v in lt.iterator(verti):
         c = mp.get(catalog['points'], v)['value']
         total = lt.size(c['cables'])
         lt.addLast(listaa, (c['landing_point_id'], c['id'], c['name'], total, c['cables']))
+        if total > mayor: 
+            mayor = total
+            primis = v
+    listaa = listaa.copy()
     final = sa.sort(listaa, comparecone)
     final2 = lt.subList(final, 1, 10)
+    k = 1
+    tr1 = False
+    while k <= lt.size(gr.vertices(catalog['connections'])) and not tr1:
+        j = lt.getElement(gr.vertices(catalog['connections']), k)
+        idd1 = j.split("-", 1)
+        ll1 = mp.get(catalog['points'], idd1[0])
+        name1 = ll1['value']['landing_point_id']
+        if primis == name1:
+            ver1 = j
+            tr1 = True
+        k += 1
+    m = folium.Map(location=[4.6, -74.083333], tiles="Stamen Terrain")
+    cv = ver1.split("-", 1)
+    infov = mp.get(catalog['points'], cv[0])['value']
+    folium.Marker([float(infov['latitude']),  float(infov['longitude'])], popup=str(infov['name'])).add_to(m)
+    ad = gr.adjacents(catalog['connections'], ver1)
+    for e in lt.iterator(ad):
+        ce = e.split("-", 1)
+        infoe = mp.get(catalog['points'], ce[0])['value']
+        folium.Marker([float(infoe['latitude']),  float(infoe['longitude'])], popup=str(infoe['name'])).add_to(m)
+        folium.PolyLine(locations=[(float(infov['latitude']), float(infov['longitude'])), (float(infoe['latitude']), float(infoe['longitude']))], tooltip=str(cv[1])).add_to(m)
+    m.save('mapa_req2.html')
     return final2
 
 
@@ -408,6 +436,20 @@ def requerimiento3(catalog, pais1, pais2):
     catalog['rutas'] = djk.Dijkstra(catalog['connections'], pa1)
     ruta = djk.pathTo(catalog['rutas'], pa2)
     distancia = djk.distTo(catalog['rutas'],  pa2)
+
+    m = folium.Map(location=[4.6, -74.083333], tiles="Stamen Terrain")
+    ad = ruta
+    for e in lt.iterator(ad):
+        cv = e['vertexA'].split("-", 1)
+        
+        ce = e['vertexB'].split("-", 1)
+        infov = mp.get(catalog['points'], cv[0])['value']
+        infoe = mp.get(catalog['points'], ce[0])['value']
+        folium.Marker([float(infov['latitude']),  float(infov['longitude'])], popup=str(infov['name'])).add_to(m)
+        folium.Marker([float(infoe['latitude']),  float(infoe['longitude'])], popup=str(infov['name'])).add_to(m)
+        folium.PolyLine(locations=[(float(infov['latitude']), float(infov['longitude'])), (float(infoe['latitude']), float(infoe['longitude']))], tooltip=str(cv[1])).add_to(m)
+
+    m.save('mapa_req3.html')
     return ruta, distancia
 
 
@@ -415,9 +457,7 @@ def requerimiento4(catalog):
     pri = prim.PrimMST(catalog['connections'])
     peso = prim.weightMST(catalog['connections'], pri)
     mst = prim.edgesMST(catalog['connections'], pri)['mst']
-
     m = folium.Map(location=[4.6, -74.083333], tiles="Stamen Terrain")
-    
     for st in lt.iterator(mst):
         cv = st['vertexA'].split("-", 1)
         ce = st['vertexB'].split("-", 1)
@@ -427,7 +467,7 @@ def requerimiento4(catalog):
         folium.PolyLine(locations=[(float(infov['latitude']), float(infov['longitude'])), (float(infoe['latitude']), float(infoe['longitude']))], tooltip=str(cv[1])).add_to(m)
         folium.Marker([float(infov['latitude']),  float(infov['longitude'])], popup=str(infov['name'])).add_to(m)
         folium.Marker([float(infoe['latitude']),  float(infoe['longitude'])], popup=str(infoe['name'])).add_to(m)
-    m.save('mapa_mst.html')
+    m.save('mapa_req4.html')
     gramst = catalog['mst']
     vert = gr.vertices(gramst)
     num = lt.size(vert)
@@ -458,8 +498,7 @@ def requerimiento5(catalog, poin):
             tr1 = True
         k += 1
     ca = ver1['value']
-    tamca = lt.size(ca['cables'])
-    
+    tamca = lt.size(ca['cables']) 
     for coun in lt.iterator(catalog['countries']):
         if coun['CapitalName'] != '':
             cap = coun['CapitalName'].replace("-", "").lower()
@@ -473,18 +512,29 @@ def requerimiento5(catalog, poin):
             if lt.isPresent(ll2['cables'], c) != 0:
                 tr2 = True
                 distanci = hs.haversine((float(ca['latitude']),float(ca['longitude'])), (float(coun['CapitalLatitude']), float(coun['CapitalLongitude'])))
-                lt.addLast(paisesf, (coun['CountryName'], distanci))
+                lt.addLast(paisesf, (coun['CountryName'], distanci, cap, c))
             g += 1
+    paisesf = paisesf.copy()
     ordee = sa.sort(paisesf, kmdes)
+    
+    m = folium.Map(location=[4.6, -74.083333], tiles="Stamen Terrain")
+    infov = ca
+    folium.Marker([float(infov['latitude']),  float(infov['longitude'])], popup=str(infov['name'])).add_to(m)
+    ad = ordee
+    for e in lt.iterator(ad):
+        ce = e[2]
+        infoe = mp.get(catalog['points'], ce)['value']
+        folium.Marker([float(infoe['latitude']),  float(infoe['longitude'])], popup=str(infoe['name'])).add_to(m)
+        folium.PolyLine(locations=[(float(infov['latitude']), float(infov['longitude'])), (float(infoe['latitude']), float(infoe['longitude']))], tooltip=str(e[3])).add_to(m)
+    m.save('mapa_req5.html')
     return ordee
 
 
 def requerimiento8(catalog):
     m = folium.Map(location=[4.6, -74.083333], tiles="Stamen Terrain")
-    vertices = gr.vertices(catalog['connections'])
-    for v in lt.iterator(vertices):
+    vertice = gr.vertices(catalog['connections'])
+    for v in lt.iterator(vertice):
         cv = v.split("-", 1)
-        
         infov = mp.get(catalog['points'], cv[0])['value']
         folium.Marker([float(infov['latitude']),  float(infov['longitude'])], popup=str(infov['name'])).add_to(m)
         ad = gr.adjacents(catalog['connections'], v)
@@ -493,6 +543,6 @@ def requerimiento8(catalog):
             infoe = mp.get(catalog['points'], ce[0])['value']
             folium.PolyLine(locations=[(float(infov['latitude']), float(infov['longitude'])), (float(infoe['latitude']), float(infoe['longitude']))], tooltip=str(cv[1])).add_to(m)
 
-    m.save('mapa_cables.html')
+    m.save('mapa_req1.html')
     return m
     
